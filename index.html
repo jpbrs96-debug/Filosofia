@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -11,30 +15,89 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <title>Filosofia do Dia</title>
 <style>
-:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* Layout: coluna editorial estreita, fundo branco e tinta preta; hierarquia por tipografia e filetes finos */
+:root{
+--bg:#ffffff;--fg:#0c0c0c;--mut:#5b5b5b;--line:#dcdcdc;--soft:#f5f5f5;--dis:#c4c4c4;
+--display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+--text:"Newsreader",Georgia,"Times New Roman",serif;
+--ui:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:#000;font:17px/1.5 Georgia,serif}
-.w{max-width:640px;margin:0 auto;padding:16px}
-nav{display:flex;gap:8px;border-bottom:2px solid #000;padding-bottom:10px;margin-bottom:16px}
-nav button{flex:1;background:#fff;color:#000;border:1px solid #000;padding:8px;font:inherit;font-size:15px;cursor:pointer}
-nav button.on{background:#000;color:#fff}
-h1{font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
-.d{margin:0 0 18px;font-size:20px}
-.c{border:1px solid #000;padding:16px;margin-bottom:14px}
-.c q{display:block;font-size:21px;line-height:1.4;quotes:"“" "”"}
-.c b{display:block;margin-top:10px}.c{cursor:pointer;transition:transform .25s}.c::after{content:"toque para virar ↻";display:block;font:12px system-ui,sans-serif;opacity:.5;margin-top:8px}.c p{margin:0;font-size:17px}
-.c small{display:block;color:#000;opacity:.7;font-family:system-ui,sans-serif;font-size:13px;margin-top:2px}
-.g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-family:system-ui,sans-serif}
-.g button{padding:10px 0;background:#fff;color:#000;border:1px solid #000;font:inherit;cursor:pointer}
-.g button.s{background:#000;color:#fff}
-.g button:disabled{border-color:#ccc;color:#bbb;cursor:default}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.55 var(--text);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 56px}
+.w{max-width:680px;margin:0 auto}
+:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+button{font-family:inherit}
+.mh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--fg);padding-bottom:12px}
+.brand{font:600 26px/1 var(--display);letter-spacing:.01em}
+.sub{font:500 10.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+nav{display:flex;gap:28px;margin:0 0 28px;border-bottom:1px solid var(--line)}
+nav button{background:none;border:0;padding:14px 0 12px;margin-bottom:-1px;font:500 12.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);cursor:pointer;border-bottom:2px solid transparent}
+nav button.on{color:var(--fg);border-bottom-color:var(--fg)}
+.hd{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:8px;margin-bottom:22px}
+.ar{height:44px;width:44px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:50%;font:400 24px/1 var(--display);cursor:pointer;padding:0 0 3px}
+.ar:hover:not(:disabled){border-color:var(--fg)}
+.ar:disabled{opacity:.25;cursor:default}
+.dt{background:none;border:0;color:inherit;cursor:pointer;padding:4px 0;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
+.wk{font:500 11px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.dn{font:500 72px/1 var(--ui);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.mo{font:500 19px var(--display)}
+.cl{font:500 12px var(--ui);text-decoration:underline;text-underline-offset:3px;color:var(--mut);margin-top:4px}
+.bt{font:500 11.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--fg);background:var(--bg);color:var(--fg);padding:10px 16px;border-radius:99px;cursor:pointer;margin:0 0 20px}
+.bt:hover{background:var(--fg);color:var(--bg)}
+.cal{border:1px solid var(--line);border-radius:4px;padding:14px;margin:0 0 22px}
 .m{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.m button{background:#fff;border:1px solid #000;padding:6px 12px;font:inherit;cursor:pointer}
-input{width:100%;padding:10px;border:1px solid #000;font:inherit;margin-bottom:12px}
-.p{padding:8px 0;border-bottom:1px solid #ddd}
-.p small{display:block;font-family:system-ui,sans-serif;font-size:13px;opacity:.7}
-.dt{flex:1;margin:0 8px}.m button:disabled{opacity:.3;cursor:default}.bk{background:#fff;color:#000;border:1px solid #000;padding:6px 12px;font:14px system-ui,sans-serif;cursor:pointer;margin:0 0 14px}
+.m b{font:600 21px var(--display);text-transform:capitalize}
+.m button{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:var(--bg);color:var(--fg);cursor:pointer;font:400 20px/1 var(--display);padding:0 0 2px}
+.m button:disabled{opacity:.25;cursor:default}
+.g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
+.g span{font:500 10.5px var(--ui);letter-spacing:.1em;color:var(--mut);padding:4px 0}
+.g button{aspect-ratio:1;border:0;border-radius:50%;background:none;color:var(--fg);font:500 14px var(--ui);cursor:pointer;min-width:0;padding:0}
+.g button:hover:not(:disabled){background:var(--soft)}
+.g button.td{box-shadow:inset 0 0 0 1px var(--fg)}
+.g button.s{background:var(--fg);color:var(--bg)}
+.g button:disabled{color:var(--dis);cursor:default;background:none}
+.c{position:relative;border:1px solid var(--line);border-radius:4px;padding:22px 22px 16px;margin-bottom:16px;cursor:pointer;background:var(--bg);transition:transform .25s ease,border-color .2s,box-shadow .2s}
+.c:hover{border-color:var(--fg);box-shadow:0 12px 26px -20px rgba(0,0,0,.55)}
+.c::after{content:"Toque para virar";display:block;text-align:right;margin-top:10px;font:500 10px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.tg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tg span{font:500 10.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);padding:3px 9px;border-radius:99px;color:var(--mut)}
+.c q{display:block;quotes:none;font:italic 500 27px/1.28 var(--display);text-wrap:pretty;overflow-wrap:anywhere}
+.c q::before{content:"\201C";display:block;font:500 68px/.6 var(--display);height:30px;margin-bottom:2px}
+.c p{margin:0;font:400 18px/1.55 var(--text);text-wrap:pretty}
+.by{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.by span{font:400 12.5px var(--ui);color:var(--mut)}
+.nm{font:600 23px/1.2 var(--display);color:var(--fg);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;text-decoration-thickness:1px;align-self:flex-start}
+.nm:hover{text-decoration-color:var(--fg)}
+.ft{margin:30px 0 0;font:400 12px/1.5 var(--ui);color:var(--mut);border-top:1px solid var(--line);padding-top:14px}
+.sr{width:100%;border:0;border-bottom:1px solid var(--fg);padding:12px 0;font:400 19px var(--text);background:var(--bg);color:var(--fg);border-radius:0;-webkit-appearance:none;appearance:none}
+.sr:focus{outline:none;border-bottom-width:2px}
+.ct{font:400 12px var(--ui);color:var(--mut);margin:10px 0 0}
+.eh{font:500 11px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin:30px 0 2px}
+.it{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.it>span:first-child{min-width:0}
+.it:hover .in{text-decoration:underline;text-underline-offset:4px}
+.in{display:block;font:600 24px/1.15 var(--display)}
+.im{display:block;font:400 12.5px/1.4 var(--ui);color:var(--mut);margin-top:3px}
+.ch{font:400 22px var(--display);color:var(--mut);flex:none}
+.pb{display:inline-block;font:500 11.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);text-decoration:none;margin:0 0 24px}
+.pb:hover{color:var(--fg)}
+.eb{font:500 11px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+.pf h1{font:500 clamp(42px,11vw,66px)/1 var(--display);margin:0 0 8px;text-wrap:balance;overflow-wrap:anywhere}
+.mv{font:italic 400 21px/1.3 var(--display);margin:0 0 26px;color:var(--mut)}
+.fx{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0 24px;border-top:1px solid var(--fg);border-bottom:1px solid var(--line);margin:0 0 36px}
+.fx div{padding:14px 0;min-width:0}
+.fx dt{font:500 10.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:4px}
+.fx dd{margin:0;font:400 18px/1.4 var(--text)}
+.sh{font:500 11px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin:0 0 4px}
+.ob{padding:22px 0;border-top:1px solid var(--line)}
+.ob h3{font:italic 500 28px/1.15 var(--display);margin:0 0 12px;text-wrap:balance}
+.lb{font:500 10.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 4px}
+.tx{margin:0;text-wrap:pretty}
+@media (max-width:420px){.dn{font-size:64px}.c q{font-size:25px}.c{padding:20px 18px 14px}}
+@media (prefers-reduced-motion:reduce){.c{transition:none}}
 </style></head><body><div class="w">
+<header class="mh"><span class="brand">Filosofia do Dia</span><span class="sub">Três vozes por dia</span></header>
 <nav><button id="t0">Frases</button><button id="t1">Filósofos</button></nav>
 <div id="v"></div></div>
 <script>
@@ -287,7 +350,7 @@ Object.assign(X,{
 "Diderot":["O primeiro passo rumo à filosofia é a incredulidade.","Somente as paixões, e as grandes paixões, podem elevar a alma às grandes coisas.","A ignorância está menos distante da verdade do que o preconceito.","Nenhum homem recebeu da natureza o direito de comandar os outros.","Só existe uma virtude, a justiça; um dever, ser feliz; um corolário, não superestimar a vida e não temer a morte."]});
 for(const k in X)Q[k]=(Q[k]||[]).concat(X[k]);
 const P=L.split("\n").map(l=>{const[n,y,r,m]=l.split("|");return{n,y:+y,r,m}});
-const E=y=>y<500?"Antiga":y<1500?"Medieval":y<1750?"Moderna":"Contemporânea";
+const E=y=>y<500?"Antiga":y<1400?"Medieval":y<1750?"Moderna":"Contemporânea";
 const R={O:"Ocidente",L:"Oriente",M:"Oriente Médio"};
 const yr=y=>y<0?"c. "+(-y)+" a.C.":"n. "+y;
 const REM=new Set(["Al-Kindi","Al-Farabi","Avicena","Al-Ghazali","Maimônides","Averróis","Ibn Arabi","Ibn Khaldun","Mulla Sadra","Ibn Tufail","Suhrawardi","Mahavira","Kautilya (Chanakya)","Nagarjuna","Vasubandhu","Bodhidharma","Shankara","Ramanuja","Rabindranath Tagore","Vivekananda","Aurobindo","Radhakrishnan","B. R. Ambedkar","Krishnamurti","Mozi","Mêncio","Xunzi","Han Fei","Dong Zhongshu","Wang Chong","Huineng","Cheng Yi","Zhu Xi","Wang Yangming","Kang Youwei","Liang Qichao","Feng Youlan","Mou Zongsan","Mary Wollstonecraft","John Stuart Mill","Peirce","William James","Frege","Bergson","Dewey","Bertrand Russell","Heidegger","Gramsci","Levinas","Simone Weil","Habermas","Erasmo de Roterdã","Thomas More","Malebranche","Vico","Berkeley","Adam Smith","Bentham","Edmund Burke","Herder","Boécio","Anselmo de Cantuária","Abelardo","Alberto Magno","Tomás de Aquino","Roger Bacon","Boaventura","Mestre Eckhart","Duns Escoto","Guilherme de Ockham","Nicolau de Cusa","Christine de Pizan","Anaximandro","Pitágoras","Empédocles","Anaxágoras","Protágoras","Demócrito","Pirro de Élis","Zenão de Cítio","Cícero","Lucrécio","Sexto Empírico","Plotino","Wonhyo","Kukai","Shinran","Dogen","Tsongkhapa","Yi Hwang","Yi I","Ogyū Sorai","Motoori Norinaga","Fukuzawa Yukichi","Nishida Kitaro","Watsuji Tetsuro","Thich Nhat Hanh"]);
@@ -301,7 +364,10 @@ function daily0(d){
 const r=rng(d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate());
 const es=Object.keys(byE).sort(()=>r()-.5).slice(0,3);
 return es.map(e=>byE[e][Math.floor(r()*byE[e].length)]);}
-const card0=x=>`<div class="c"><q>${x.t}</q><b>${x.n}</b><small>${yr(x.y)} · ${E(x.y)} · ${R[x.r]}</small><small>${x.m}</small></div>`;
+const slug=n=>n.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+let came=false,ly=0;
+const lk=n=>'<a class="nm" href="#f-'+slug(n)+'" onclick="event.stopPropagation();came=true;ly=scrollY">'+n+'</a>';
+const card0=x=>`<div class="c"><div class="tg"><span>${R[x.r]}</span><span>${E(x.y)}</span></div><q>${x.t}</q><div class="by">${lk(x.n)}<span>${yr(x.y)} · ${x.m}</span></div></div>`;
 const CARDS=[];const EX=[
 ["Sócrates","nada sei","Atribuída a Sócrates a partir da Apologia de Platão: ele se disse o mais sábio por reconhecer a própria ignorância, base do método de questionar para buscar a verdade."],
 ["Sócrates","reflexão","Dita no julgamento que o condenou à morte, em 399 a.C.: viver sem examinar crenças e valores é viver sem consciência do que se faz."],
@@ -407,40 +473,114 @@ const EXC={
 "Diderot":[["incredulidade","Pensamentos Filosóficos: filosofar começa por duvidar do que se aceita sem exame."],["paixões","Pensamentos Filosóficos: as paixões fortes impulsionam grandes realizações."],["preconceito","Interpretação da Natureza: o preconceito afasta da verdade mais do que a simples ignorância."],["comandar","Enciclopédia, verbete Autoridade Política: o poder legítimo depende do consentimento."],["uma virtude","Síntese de uma ética iluminista centrada na justiça e na felicidade."]]};
 for(const n in EXC)EXC[n].forEach(([k,t])=>EX.push([n,k,t]));
 function ex(x){const e=EX.find(e=>e[0]==x.n&&x.t.includes(e[1]));return e?e[2]:x.n+" ("+yr(x.y)+") pertence à corrente "+x.m+". A explicação desta frase ainda será adicionada."}
-const card=x=>{const i=CARDS.push(x)-1;return card0(x).replace('<div class="c">','<div class="c" onclick="fp(this,'+i+')">')};
-function fp(el,i){const x=CARDS[i],b=el.dataset.b=="1";el._f??=el.innerHTML;el.style.transform="rotateY(90deg)";setTimeout(()=>{el.innerHTML=b?el._f:"<p>"+ex(x)+"</p><b>"+x.n+"</b><small>Contexto</small>";el.dataset.b=b?"0":"1";el.style.transform="rotateY(0)"},250)}
+const card=x=>{const i=CARDS.push(x)-1;return card0(x).replace('<div class="c">','<div class="c" role="button" tabindex="0" aria-label="Virar quadro" onclick="fp(this,'+i+')" onkeydown="kd(event,this,'+i+')">')};
+function kd(e,el,i){if(e.target!==el)return;if(e.key=="Enter"||e.key==" "){e.preventDefault();fp(el,i)}}
+function fp(el,i){const x=CARDS[i],b=el.dataset.b=="1";el._f??=el.innerHTML;el.style.transform="rotateY(90deg)";setTimeout(()=>{el.innerHTML=b?el._f:'<p>'+ex(x)+'</p><div class="by">'+lk(x.n)+'</div>';el.dataset.b=b?"0":"1";el.style.transform="rotateY(0)"},250)}
 const fmt=d=>d.toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 const v=document.getElementById("v");
 let today=new Date();today.setHours(0,0,0,0);
 const START=new Date(2026,10,9);let cm=new Date(today.getFullYear(),today.getMonth(),1),sel=null;
+const PF=[
+["Tales de Mileto","Mileto, Jônia (atual Turquia)","c. 624 – c. 546 a.C.",[["Sem obra preservada","Conhecido por relatos de Aristóteles e de Diógenes Laércio. Defendeu que a água é o princípio de todas as coisas e buscou explicar a natureza sem recorrer a mitos."]]],
+["Heráclito","Éfeso, Jônia (atual Turquia)","c. 535 – c. 475 a.C.",[["Sobre a Natureza (só fragmentos)","O mundo está em fluxo permanente, e a realidade nasce da luta e da unidade entre opostos. Uma razão comum, o logos, organiza esse movimento."]]],
+["Parmênides","Eleia, sul da Itália (então colônia grega)","c. 515 – c. 450 a.C.",[["Poema Sobre a Natureza","Distingue a via da verdade, em que só o que é pode ser pensado, e a via da opinião. O ser é uno, imóvel e eterno, e a mudança é aparência."]]],
+["Sócrates","Atenas, Grécia","470/469 – 399 a.C.",[["Sem obra escrita","Não deixou textos. Seu pensamento chegou por Platão e Xenofonte. Praticou o diálogo para examinar crenças, afirmou saber que nada sabia e defendeu que a virtude é conhecimento."],["Apologia de Sócrates (de Platão)","Registra sua defesa no julgamento de 399 a.C.: a vida sem exame não vale a pena, e a justiça importa mais do que a sobrevivência."]]],
+["Platão","Atenas, Grécia","c. 428 – c. 348 a.C.",[["A República","Discute a justiça na cidade e na alma. Propõe o governo dos filósofos e a alegoria da caverna, em que conhecer é sair das sombras rumo ao Bem."],["Fédon","Argumenta pela imortalidade da alma e pela teoria das Formas, realidades inteligíveis que dão sentido ao mundo sensível."],["O Banquete","Reúne discursos sobre o amor (Eros). O desejo pelo belo leva, em degraus, da beleza dos corpos ao Belo em si."]]],
+["Diógenes de Sinope","Sinope, no Mar Negro (atual Turquia)","c. 412 – c. 323 a.C.",[["Sem obra preservada","Seu ensino foi a própria vida, contada por autores como Diógenes Laércio. Defendeu viver conforme a natureza, a autossuficiência, a franqueza e o desprezo pelas convenções. Dizia-se cidadão do mundo."]]],
+["Aristóteles","Estagira, Macedônia (norte da Grécia)","384 – 322 a.C.",[["Ética a Nicômaco","A felicidade (eudaimonia) é viver segundo a virtude, que se forma pelo hábito e fica no meio-termo entre o excesso e a falta."],["Política","O ser humano é um animal político, e a cidade existe para permitir a vida boa. Compara regimes e defende o governo voltado ao bem comum."],["Metafísica","Estuda o ser enquanto ser. Analisa substância, matéria e forma, e as quatro causas, e conclui por um primeiro motor imóvel."]]],
+["Epicuro","Samos (ilha grega)","341 – 270 a.C.",[["Carta a Meneceu","Resume a vida feliz: o prazer é ausência de dor e de perturbação, os desejos devem ser moderados e a morte nada é para nós."],["Máximas Principais","Quarenta sentenças sobre prazer, justiça e amizade. A tranquilidade da alma (ataraxia) é o objetivo."]]],
+["Sêneca","Córdoba, Hispânia (atual Espanha)","c. 4 a.C. – 65 d.C.",[["Cartas a Lucílio","Conselhos estoicos sobre o uso do tempo, a morte, a amizade e o autocontrole, escritos a um amigo."],["Sobre a Brevidade da Vida","A vida só é curta para quem a desperdiça. Defende dedicar o tempo à reflexão e ao que importa."],["Sobre a Ira","Analisa a raiva como breve loucura e propõe formas de preveni-la e controlá-la."]]],
+["Epicteto","Hierápolis, Frígia (atual Turquia)","c. 50 – c. 135 d.C.",[["Manual (Encheiridion)","Compilado por seu aluno Arriano. Separa o que depende de nós (juízos e desejos) do que não depende, e ensina a aceitar o resto com serenidade."],["Discursos","Também anotados por Arriano. Tratam de liberdade interior, dever e disciplina dos desejos."]]],
+["Marco Aurélio","Roma","121 – 180 d.C.",[["Meditações","Diário estoico escrito durante campanhas militares. Trata da impermanência, do dever, do domínio sobre os próprios juízos e da vida em comunidade."]]],
+["Hipátia de Alexandria","Alexandria, Egito","c. 360 – 415 d.C.",[["Comentários matemáticos (perdidos)","Nenhuma obra dela sobreviveu. Fontes antigas dizem que comentou Diofanto e as Cônicas de Apolônio. Ensinou matemática e filosofia neoplatônica e foi assassinada em 415."]]],
+["Agostinho de Hipona","Tagaste, Numídia (atual Argélia)","354 – 430 d.C.",[["Confissões","Autobiografia espiritual. Explora memória, tempo e vontade e conclui que o coração só descansa em Deus."],["A Cidade de Deus","Contrapõe a cidade terrena, movida pelo amor de si, à cidade de Deus, movida pelo amor a Deus, e lê a história nessa chave."]]],
+["Rumi","Balkh, região do atual Afeganistão, segundo a tradição (viveu em Konya)","1207 – 1273",[["Masnavi","Longo poema didático sufi, com histórias e parábolas sobre o amor divino e a busca da união com Deus."],["Divan de Shams de Tabriz","Coletânea de poemas líricos sobre amor, êxtase e a perda do eu, inspirados por seu mestre Shams."]]],
+["Confúcio","Estado de Lu (atual Qufu, China)","551 – 479 a.C.",[["Analectos (Lunyu)","Reunido por discípulos. Ensina a virtude da humanidade (ren), o respeito aos ritos (li), a educação e o exemplo moral do governante como base da harmonia social."]]],
+["Lao Tsé","Estado de Chu (atual China), segundo a tradição","séc. VI a.C. (tradicional; historicidade debatida)",[["Tao Te Ching","Apresenta o Tao como princípio sem nome. Propõe agir sem forçar (wu wei), a simplicidade, a humildade e governar com o mínimo de interferência."]]],
+["Buda (Sidarta Gautama)","Lumbini (atual Nepal)","c. 563 – c. 483 a.C. (datas debatidas)",[["Dhammacakkappavattana Sutta (Primeiro Sermão)","Ensinamento oral, registrado depois. Expõe as Quatro Nobres Verdades e o Caminho Óctuplo, que levam ao fim do sofrimento."],["Dhammapada","Coletânea de versos atribuídos aos seus ensinamentos sobre a mente, o ódio e o amor, o esforço e a libertação."]]],
+["Sun Tzu","Estado de Qi (atual China)","c. 544 – c. 496 a.C. (datas incertas)",[["A Arte da Guerra","Tratado de estratégia: vencer sem lutar, conhecer o inimigo e a si mesmo, adaptar-se ao terreno e preparar-se antes da batalha."]]],
+["Zhuangzi","Estado de Song (atual Henan, China)","c. 369 – c. 286 a.C.",[["Zhuangzi","Coleção de parábolas taoístas. Defende o relativismo dos pontos de vista, a transformação constante das coisas e a liberdade de agir em harmonia com o Tao."]]],
+["Patanjali","Índia (vida pouco conhecida)","datas incertas, entre o séc. II a.C. e o séc. V d.C.",[["Yoga Sutras","Texto em aforismos. Define o yoga como a cessação das flutuações da mente e descreve o caminho de oito membros (ashtanga), do comportamento ético à meditação."]]],
+["Mahatma Gandhi","Porbandar, Gujarat (Índia)","1869 – 1948",[["Hind Swaraj (1909)","Critica a civilização industrial moderna e defende a autonomia (swaraj) por meio da não violência e da autossuficiência."],["Minhas Experiências com a Verdade","Autobiografia. Descreve o satyagraha, a resistência pela verdade, e seus experimentos pessoais de disciplina e ética."]]],
+["Maquiavel","Florença, Itália","1469 – 1527",[["O Príncipe","Analisa como conquistar e manter o poder. Separa a política da moral tradicional e discute virtù, fortuna e a necessidade de se adaptar às circunstâncias."],["Discursos sobre a Primeira Década de Tito Lívio","Defende a república, o conflito entre grupos e as leis como forma de manter a liberdade."]]],
+["Montaigne","Castelo de Montaigne, perto de Bordeaux (França)","1533 – 1592",[["Ensaios","Reflexões pessoais sobre o medo, a amizade, a educação e os costumes. Adota o ceticismo, com a pergunta 'Que sei eu?', e faz de si mesmo objeto de estudo."]]],
+["Giordano Bruno","Nola, perto de Nápoles (Itália)","1548 – 1600",[["Do Infinito, Universo e Mundos","Defende um universo infinito, sem centro, com inúmeros mundos."],["A Ceia das Cinzas","Diálogo que defende o sistema copernicano e critica o aristotelismo escolástico."]]],
+["Galileu Galilei","Pisa (Itália)","1564 – 1642",[["Diálogo sobre os Dois Máximos Sistemas do Mundo","Compara os sistemas ptolomaico e copernicano e defende o último, o que levou à condenação do autor pela Inquisição em 1633."],["O Ensaiador","Afirma que o livro da natureza está escrito em linguagem matemática e defende o método experimental."]]],
+["Francis Bacon","Londres (Inglaterra)","1561 – 1626",[["Novum Organum","Propõe um novo método científico, baseado na observação e na indução, e identifica os ídolos que enviesam o pensamento."],["Ensaios","Textos curtos sobre estudo, ambição, vingança e amizade, com observações práticas sobre a vida."]]],
+["Hobbes","Westport, Wiltshire (Inglaterra)","1588 – 1679",[["Leviatã","Sem um poder comum, a vida seria uma guerra de todos contra todos. As pessoas firmam um pacto e entregam o poder a um soberano em troca de segurança."],["De Cive","Resume sua teoria política: origem do Estado, obediência e paz."]]],
+["Descartes","La Haye en Touraine (França)","1596 – 1650",[["Discurso do Método","Propõe regras para conduzir bem a razão: aceitar só o evidente, dividir os problemas, ordenar o pensamento e revisar tudo."],["Meditações Metafísicas","Aplica a dúvida a tudo e encontra uma certeza no 'penso, logo existo'. Em seguida discute Deus e a distinção entre mente e corpo."],["As Paixões da Alma","Analisa as emoções e a relação entre corpo e alma, e propõe dominá-las pela razão."]]],
+["Pascal","Clermont-Ferrand (França)","1623 – 1662",[["Pensamentos","Fragmentos que opõem a grandeza e a miséria humanas. Defendem que o coração tem razões que a razão desconhece e propõem a aposta na fé."],["Cartas Provinciais","Cartas satíricas que criticam a casuística moral dos jesuítas."]]],
+["Espinosa","Amsterdã (Países Baixos)","1632 – 1677",[["Ética","Escrita em método geométrico. Sustenta que Deus é a Natureza, que tudo é necessário e que a liberdade consiste em entender os afetos."],["Tratado Teológico-Político","Defende a liberdade de pensar e a separação entre fé e filosofia, e critica o uso político da religião."]]],
+["Locke","Wrington, Somerset (Inglaterra)","1632 – 1704",[["Ensaio sobre o Entendimento Humano","Nega ideias inatas. A mente é um papel em branco e todo conhecimento vem da experiência."],["Segundo Tratado sobre o Governo","Afirma direitos naturais à vida, à liberdade e à propriedade. O governo se baseia no consentimento e pode ser contestado quando os viola."],["Carta sobre a Tolerância","Defende que o Estado não deve impor crenças religiosas."]]],
+["Leibniz","Leipzig (atual Alemanha)","1646 – 1716",[["Teodiceia","Procura conciliar a bondade de Deus com o mal e conclui que este é o melhor dos mundos possíveis."],["Monadologia","O mundo é feito de substâncias simples, as mônadas, que refletem o universo em harmonia pré-estabelecida."],["Novos Ensaios sobre o Entendimento Humano","Resposta a Locke: defende que a mente tem disposições inatas."]]],
+["Montesquieu","La Brède, perto de Bordeaux (França)","1689 – 1755",[["O Espírito das Leis","Compara regimes políticos e o papel do clima e dos costumes. Defende a separação dos poderes para que o poder freie o poder."],["Cartas Persas","Romance epistolar satírico que vê a sociedade francesa pelos olhos de viajantes persas."]]],
+["Voltaire","Paris (França)","1694 – 1778",[["Cândido","Sátira ao otimismo de Leibniz. Conclui que é preciso cultivar o próprio jardim."],["Tratado sobre a Tolerância","Escrito após o caso Calas. Condena o fanatismo religioso e defende a tolerância."],["Cartas Filosóficas","Elogia a liberdade política e o empirismo ingleses em contraste com a França."]]],
+["Hume","Edimburgo (Escócia)","1711 – 1776",[["Tratado da Natureza Humana","Busca uma ciência do homem baseada na experiência. Questiona a causalidade e a identidade pessoal e afirma que as paixões guiam a razão."],["Investigação sobre o Entendimento Humano","Versão mais curta, com a crítica aos milagres e a defesa do ceticismo moderado."],["Diálogos sobre a Religião Natural","Examina os argumentos para a existência de Deus, em especial o argumento do desígnio."]]],
+["Rousseau","Genebra (Suíça)","1712 – 1778",[["Do Contrato Social","A legitimidade política vem da vontade geral do povo. A liberdade é obedecer a leis que nós mesmos damos."],["Discurso sobre a Origem da Desigualdade","Afirma que a desigualdade nasce da propriedade privada e da vida em sociedade, e não da natureza."],["Emílio","Tratado de educação que defende desenvolver a criança segundo a natureza, com liberdade."]]],
+["Diderot","Langres (França)","1713 – 1784",[["Enciclopédia (organizada com d'Alembert)","Grande obra coletiva que reúne o conhecimento da época e difunde a razão, a ciência e a crítica à autoridade."],["Carta sobre os Cegos","Discute como a experiência sensível forma o conhecimento. Valeu ao autor a prisão por seu ceticismo religioso."]]],
+["Kant","Königsberg (atual Kaliningrado, Rússia)","1724 – 1804",[["Crítica da Razão Pura","Investiga os limites do conhecimento. Conhecemos os fenômenos, moldados pelas formas da sensibilidade e do entendimento, e não a coisa em si."],["Fundamentação da Metafísica dos Costumes","Formula o imperativo categórico: agir por máximas universalizáveis e tratar a humanidade como fim."],["À Paz Perpétua","Propõe condições para a paz entre os Estados, como repúblicas, federação de nações e direito cosmopolita."]]],
+["Hegel","Stuttgart (atual Alemanha)","1770 – 1831",[["Fenomenologia do Espírito","Traça o caminho da consciência até o saber absoluto, por contradições superadas, e inclui a dialética do senhor e do escravo."],["Ciência da Lógica","Expõe as categorias do pensamento em movimento dialético, do ser puro ao conceito."],["Princípios da Filosofia do Direito","Analisa direito, moralidade e eticidade (família, sociedade civil, Estado) como realização da liberdade."]]],
+["Schopenhauer","Danzig (atual Gdańsk, Polônia)","1788 – 1860",[["O Mundo como Vontade e Representação","O mundo é representação, e sua essência é uma Vontade cega que gera desejo e sofrimento. O alívio vem da arte, da compaixão e da renúncia."],["Sobre o Fundamento da Moral","Fundamenta a ética na compaixão."]]],
+["Kierkegaard","Copenhague (Dinamarca)","1813 – 1855",[["Temor e Tremor","Reflete sobre Abraão e o salto da fé, que ultrapassa a ética universal."],["O Conceito de Angústia","A angústia é a vertigem da liberdade diante da possibilidade."],["A Doença para a Morte","O desespero é a doença do eu que não quer ser ele mesmo, e a cura está na relação com Deus."]]],
+["Karl Marx","Tréveris (atual Alemanha)","1818 – 1883",[["Manifesto Comunista (com Engels)","A história é a história da luta de classes. Propõe a união dos trabalhadores contra o capitalismo."],["O Capital","Analisa a mercadoria, o valor e a mais-valia e mostra como o capitalismo explora o trabalho."],["Manuscritos Econômico-Filosóficos","Descreve a alienação do trabalhador em relação ao produto, ao trabalho e aos outros."]]],
+["Nietzsche","Röcken, Prússia (atual Alemanha)","1844 – 1900",[["Assim Falou Zaratustra","Anuncia a morte de Deus, o além-do-homem e o eterno retorno como afirmação da vida."],["Genealogia da Moral","Investiga a origem dos valores morais, distingue a moral dos senhores da dos escravos e critica o ressentimento."],["A Gaia Ciência","Aforismos sobre conhecimento e arte. Traz o anúncio de que 'Deus está morto' e a ideia do eterno retorno."]]],
+["Husserl","Prossnitz (atual Prostějov, Tchéquia)","1859 – 1938",[["Investigações Lógicas","Funda a fenomenologia, com a crítica ao psicologismo e a análise dos significados."],["Ideias para uma Fenomenologia Pura","Desenvolve a redução fenomenológica e a intencionalidade: toda consciência é consciência de algo."],["A Crise das Ciências Europeias","Critica a ciência que esquece o mundo da vida (Lebenswelt) e propõe a volta a ele."]]],
+["Ortega y Gasset","Madri (Espanha)","1883 – 1955",[["Meditações do Quixote","Apresenta a frase 'eu sou eu e minha circunstância', ligando o indivíduo ao mundo em que vive."],["A Rebelião das Massas","Analisa o homem-massa, que se sente igual a todos e dispensa a excelência, como risco para a civilização."],["História como Sistema","Defende que o ser humano não tem natureza fixa, e sim história."]]],
+["Wittgenstein","Viena (Áustria)","1889 – 1951",[["Tractatus Logico-Philosophicus","A linguagem figura fatos do mundo. O que não se pode dizer com sentido deve ser calado."],["Investigações Filosóficas","O significado de uma palavra é seu uso nos jogos de linguagem. Muitos problemas filosóficos surgem de confusões linguísticas."]]],
+["Karl Popper","Viena (Áustria)","1902 – 1994",[["A Lógica da Descoberta Científica","Propõe a falseabilidade: uma teoria é científica se puder ser refutada pela experiência."],["A Sociedade Aberta e Seus Inimigos","Defende a democracia liberal e critica o historicismo e o autoritarismo."]]],
+["Adorno","Frankfurt (Alemanha)","1903 – 1969",[["Dialética do Esclarecimento (com Horkheimer)","A razão iluminista pode se voltar contra a liberdade. Critica a indústria cultural."],["Minima Moralia","Aforismos sobre a vida danificada na sociedade moderna: não existe vida correta na vida falsa."],["Dialética Negativa","Critica sistemas totalizantes e defende a atenção ao que não se reduz ao conceito."]]],
+["Sartre","Paris (França)","1905 – 1980",[["O Ser e o Nada","Distingue o ser-em-si das coisas e o ser-para-si da consciência. Sustenta que somos livres e responsáveis e que a existência precede a essência."],["A Náusea","Romance sobre a experiência da contingência, em que o personagem percebe que a existência não tem justificativa prévia."],["O Existencialismo É um Humanismo","Conferência que defende que o homem se define por suas escolhas e responde por elas."]]],
+["Hannah Arendt","Linden, perto de Hanôver (Alemanha)","1906 – 1975",[["Origens do Totalitarismo","Analisa o antissemitismo, o imperialismo e o terror totalitário, que destrói a pluralidade humana."],["A Condição Humana","Distingue labor, trabalho e ação. A ação política, em espaço público, realiza a liberdade."],["Eichmann em Jerusalém","Cunha a banalidade do mal: grandes crimes podem ser cometidos por pessoas comuns que deixam de pensar."]]],
+["Simone de Beauvoir","Paris (França)","1908 – 1986",[["O Segundo Sexo","Mostra a condição feminina como construção social: não se nasce mulher, torna-se mulher."],["A Ética da Ambiguidade","Defende uma ética existencialista fundada na liberdade, que exige a liberdade dos outros."],["A Velhice","Estuda o envelhecimento e o modo como a sociedade o trata."]]],
+["Albert Camus","Mondovi (atual Dréan, Argélia)","1913 – 1960",[["O Mito de Sísifo","Trata do absurdo, o choque entre a busca de sentido e o silêncio do mundo. Responde com a revolta e imagina Sísifo feliz."],["O Estrangeiro","Romance sobre Meursault, indiferente às convenções, e o absurdo da condição humana."],["O Homem Revoltado","A revolta afirma valores comuns a todos, mas pode degenerar em violência."]]],
+["Foucault","Poitiers (França)","1926 – 1984",[["Vigiar e Punir","História das prisões e da disciplina. O poder moderno se exerce pela vigilância e pela normalização."],["História da Loucura","Mostra como a sociedade definiu e excluiu a loucura ao longo dos séculos."],["História da Sexualidade","Analisa como o saber e o poder constituem a sexualidade e os sujeitos."]]]
+];
+const PFm={};PF.forEach(a=>PFm[a[0]]=a);
 let cur=0,open=false;sel=new Date(today);
 const END=new Date(2026,10,9+SCH.length-1);
 const ok=d=>d>=START&&d<=new Date(Math.max(END,today));
 const sh=(d,k)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+k);
-function tab(i){cur=i;[0,1].forEach(k=>document.getElementById("t"+k).className=k==i?"on":"");i?fil():dia()}
-function dia(){CARDS.length=0;const isT=+sel==+today;
-let h='<div class="m"><button onclick="st(-1)" '+(ok(sh(sel,-1))?"":"disabled")+'>‹</button><button class="dt" onclick="tg()">'+(isT?"Hoje · ":"")+fmt(sel)+' ▾</button><button onclick="st(1)" '+(ok(sh(sel,1))?"":"disabled")+'>›</button></div>';
+function tabs(i){[0,1].forEach(k=>document.getElementById("t"+k).className=k==i?"on":"")}
+function tab(i){cur=i;if(/^#f-/.test(location.hash))location.hash="";else show()}
+function show(){tabs(cur);cur?fil():dia()}
+function dia(){CARDS.length=0;const isT=+sel==+today,pv=ok(sh(sel,-1)),nx=ok(sh(sel,1));
+let h='<section class="hd"><button class="ar" aria-label="Dia anterior" onclick="st(-1)"'+(pv?"":" disabled")+'>‹</button>'
++'<button class="dt" onclick="tg()" aria-expanded="'+open+'"><span class="wk">'+(isT?"Hoje · ":"")+sel.toLocaleDateString("pt-BR",{weekday:"long"})+'</span><span class="dn">'+sel.getDate()+'</span><span class="mo">'+sel.toLocaleDateString("pt-BR",{month:"long",year:"numeric"})+'</span><span class="cl">'+(open?"Fechar calendário":"Escolher outro dia")+'</span></button>'
++'<button class="ar" aria-label="Próximo dia" onclick="st(1)"'+(nx?"":" disabled")+'>›</button></section>';
 if(open)h+=grid();
-if(!isT)h+='<p style="margin:0"><button class="bk" onclick="go(today)">Voltar para hoje</button></p>';
-h+=daily(sel).map(card).join("");
-v.innerHTML=h;}
+if(!isT)h+='<button class="bt" onclick="go(today)">Voltar para hoje</button>';
+h+=daily(sel).map(card).join("")+'<p class="ft">Frases em tradução livre. Toque em um quadro para ver o significado e no nome para conhecer o filósofo.</p>';
+v.innerHTML=h}
 function grid(){const y=cm.getFullYear(),m=cm.getMonth(),first=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate();
-let h='<div class="m" style="margin-top:6px"><button onclick="mv(-1)">‹</button><b>'+cm.toLocaleDateString("pt-BR",{month:"long",year:"numeric"})+'</b><button onclick="mv(1)">›</button></div><div class="g" style="margin-bottom:16px">';
+const lo=new Date(START.getFullYear(),START.getMonth(),1),hi=new Date(Math.max(END,today));
+let h='<div class="cal"><div class="m"><button aria-label="Mês anterior" onclick="mv(-1)"'+(cm>lo?"":" disabled")+'>‹</button><b>'+cm.toLocaleDateString("pt-BR",{month:"long",year:"numeric"})+'</b><button aria-label="Próximo mês" onclick="mv(1)"'+(new Date(y,m+1,1)<=hi?"":" disabled")+'>›</button></div><div class="g">';
 "DSTQQSS".split("").forEach(c=>h+="<span>"+c+"</span>");
 for(let i=0;i<first;i++)h+="<span></span>";
-for(let d=1;d<=n;d++){const dt=new Date(y,m,d);h+='<button '+(ok(dt)?"":"disabled")+' class="'+(+sel==+dt?"s":"")+'" onclick="pk('+y+','+m+','+d+')">'+d+'</button>'}
-return h+"</div>";}
+for(let d=1;d<=n;d++){const dt=new Date(y,m,d);h+='<button '+(ok(dt)?"":"disabled")+' class="'+(+sel==+dt?"s ":"")+(+today==+dt?"td":"")+'" onclick="pk('+y+','+m+','+d+')">'+d+'</button>'}
+return h+"</div></div>"}
 function tg(){open=!open;if(open)cm=new Date(sel.getFullYear(),sel.getMonth(),1);dia()}
-function mv(k){const n=new Date(cm.getFullYear(),cm.getMonth()+k,1);if(n<new Date(START.getFullYear(),START.getMonth(),1)||n>new Date(Math.max(END,today)))return;cm=n;dia()}
+function mv(k){const n=new Date(cm.getFullYear(),cm.getMonth()+k,1),lo=new Date(START.getFullYear(),START.getMonth(),1),hi=new Date(Math.max(END,today));if(n<lo||n>hi)return;cm=n;dia()}
 function pk(y,m,d){sel=new Date(y,m,d);open=false;dia()}
 function st(k){const n=sh(sel,k);if(ok(n)){sel=n;dia()}}
 function go(d){sel=new Date(d);open=false;dia()}
-function fil(q=""){
-v.innerHTML=`<h1>${PV.length} filósofos</h1><input id="q" placeholder="Buscar nome, movimento ou era" oninput="fl(this.value)"><div id="l"></div>`;fl(q);}
-function fl(q){q=q.toLowerCase();
-document.getElementById("l").innerHTML=PV.filter(p=>(p.n+p.m+E(p.y)+R[p.r]).toLowerCase().includes(q)).sort((a,b)=>a.y-b.y).map(p=>`<div class="p"><b>${p.n}</b><small>${yr(p.y)} · ${E(p.y)} · ${R[p.r]} · ${p.m}</small></div>`).join("");}
+function fil(q=""){CARDS.length=0;v.innerHTML='<input id="q" class="sr" type="search" placeholder="Buscar filósofo, movimento ou época" aria-label="Buscar filósofo" oninput="fl(this.value)"><p class="ct" id="ct"></p><div id="l"></div>';fl(q)}
+function fl(q){q=q.toLowerCase();const L2=PV.filter(p=>(p.n+" "+p.m+" "+E(p.y)+" "+R[p.r]).toLowerCase().includes(q)).sort((a,b)=>a.y-b.y);
+let h="",last="";
+L2.forEach(p=>{const e=E(p.y);if(e!=last){h+='<h2 class="eh">'+e+'</h2>';last=e}
+h+='<a class="it" href="#f-'+slug(p.n)+'" onclick="came=true;ly=scrollY"><span><span class="in">'+p.n+'</span><span class="im">'+yr(p.y)+' · '+R[p.r]+' · '+p.m+'</span></span><span class="ch">→</span></a>'});
+document.getElementById("l").innerHTML=h||'<p class="ft">Nenhum filósofo encontrado.</p>';
+document.getElementById("ct").textContent=L2.length+" de "+PV.length+" filósofos"}
+function perfil(p){CARDS.length=0;tabs(1);const a=PFm[p.n];
+let h='<a class="pb" href="#" onclick="bk();return false">← Voltar</a><article class="pf"><p class="eb">'+E(p.y)+' · '+R[p.r]+'</p><h1>'+p.n+'</h1><p class="mv">'+p.m+'</p>';
+h+='<dl class="fx"><div><dt>Nascimento</dt><dd>'+(a?a[1]:"Não informado")+'</dd></div><div><dt>Época</dt><dd>'+(a?a[2]:yr(p.y))+'</dd></div></dl>';
+h+='<h2 class="sh">Principais obras</h2>';
+(a?a[3]:[]).forEach(o=>{h+='<section class="ob"><h3>'+o[0]+'</h3><p class="lb">Principais ideias</p><p class="tx">'+o[1]+'</p></section>'});
+v.innerHTML=h+'</article>';scrollTo(0,0)}
+function route(){const m=/^#f-(.+)$/.exec(location.hash),p=m&&PV.find(p=>slug(p.n)==m[1]);if(p)perfil(p);else{show();if(ly){const y=ly;ly=0;scrollTo(0,y)}}}
+function bk(){if(came){came=false;history.back()}else location.hash=""}
 [0,1].forEach(i=>document.getElementById("t"+i).onclick=()=>tab(i));
-function rf(){const t=new Date();t.setHours(0,0,0,0);if(+t!=+today){const w=+sel==+today;today=t;if(w)sel=new Date(t);cm=new Date(sel.getFullYear(),sel.getMonth(),1);tab(cur)}}
+window.addEventListener("hashchange",route);
+function rf(){const t=new Date();t.setHours(0,0,0,0);if(+t!=+today){const w=+sel==+today;today=t;if(w)sel=new Date(t);cm=new Date(sel.getFullYear(),sel.getMonth(),1);route()}}
 document.addEventListener("visibilitychange",rf);window.addEventListener("focus",rf);setInterval(rf,60000);
-tab(0);
+route();
 </script><script>if("serviceWorker" in navigator&&location.protocol.indexOf("http")==0)navigator.serviceWorker.register("sw.js").catch(function(){});</script></body></html>
