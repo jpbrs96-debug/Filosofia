@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Filosofia">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>Filosofia do Dia</title>
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font:17px/1.5 Georgia,serif}
+.w{max-width:640px;margin:0 auto;padding:16px}
+nav{display:flex;gap:8px;border-bottom:2px solid #000;padding-bottom:10px;margin-bottom:16px}
+nav button{flex:1;background:#fff;color:#000;border:1px solid #000;padding:8px;font:inherit;font-size:15px;cursor:pointer}
+nav button.on{background:#000;color:#fff}
+h1{font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+.d{margin:0 0 18px;font-size:20px}
+.c{border:1px solid #000;padding:16px;margin-bottom:14px}
+.c q{display:block;font-size:21px;line-height:1.4;quotes:"“" "”"}
+.c b{display:block;margin-top:10px}.c{cursor:pointer;transition:transform .25s}.c::after{content:"toque para virar ↻";display:block;font:12px system-ui,sans-serif;opacity:.5;margin-top:8px}.c p{margin:0;font-size:17px}
+.c small{display:block;color:#000;opacity:.7;font-family:system-ui,sans-serif;font-size:13px;margin-top:2px}
+.g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-family:system-ui,sans-serif}
+.g button{padding:10px 0;background:#fff;color:#000;border:1px solid #000;font:inherit;cursor:pointer}
+.g button.s{background:#000;color:#fff}
+.g button:disabled{border-color:#ccc;color:#bbb;cursor:default}
+.m{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.m button{background:#fff;border:1px solid #000;padding:6px 12px;font:inherit;cursor:pointer}
+input{width:100%;padding:10px;border:1px solid #000;font:inherit;margin-bottom:12px}
+.p{padding:8px 0;border-bottom:1px solid #ddd}
+.p small{display:block;font-family:system-ui,sans-serif;font-size:13px;opacity:.7}
+.dt{flex:1;margin:0 8px}.m button:disabled{opacity:.3;cursor:default}.bk{background:#fff;color:#000;border:1px solid #000;padding:6px 12px;font:14px system-ui,sans-serif;cursor:pointer;margin:0 0 14px}
+</style></head><body><div class="w">
+<nav><button id="t0">Frases</button><button id="t1">Filósofos</button></nav>
+<div id="v"></div></div>
+<script>
+const L=`Tales de Mileto|-624|O|Pré-socráticos
+Anaximandro|-610|O|Pré-socráticos
+Pitágoras|-570|O|Pitagorismo
+Heráclito|-535|O|Pré-socráticos
+Parmênides|-515|O|Eleatismo
+Empédocles|-494|O|Pré-socráticos
+Anaxágoras|-500|O|Pré-socráticos
+Protágoras|-490|O|Sofística
+Sócrates|-470|O|Filosofia clássica
+Demócrito|-460|O|Atomismo
+Platão|-428|O|Platonismo
+Diógenes de Sinope|-412|O|Cinismo
+Aristóteles|-384|O|Aristotelismo
+Pirro de Élis|-360|O|Ceticismo
+Epicuro|-341|O|Epicurismo
+Zenão de Cítio|-334|O|Estoicismo
+Cícero|-106|O|Ecletismo romano
+Lucrécio|-99|O|Epicurismo
+Sêneca|-4|O|Estoicismo
+Epicteto|50|O|Estoicismo
+Marco Aurélio|121|O|Estoicismo
+Sexto Empírico|160|O|Ceticismo
+Plotino|204|O|Neoplatonismo
+Hipátia de Alexandria|360|O|Neoplatonismo
+Agostinho de Hipona|354|O|Patrística
+Boécio|480|O|Patrística
+Anselmo de Cantuária|1033|O|Escolástica
+Abelardo|1079|O|Escolástica
+Alberto Magno|1200|O|Escolástica
+Tomás de Aquino|1225|O|Escolástica
+Roger Bacon|1219|O|Escolástica
+Boaventura|1221|O|Escolástica
+Mestre Eckhart|1260|O|Misticismo
+Duns Escoto|1266|O|Escolástica
+Guilherme de Ockham|1287|O|Nominalismo
+Nicolau de Cusa|1401|O|Humanismo
+Christine de Pizan|1364|O|Proto-feminismo
+Al-Kindi|801|M|Filosofia islâmica
+Al-Farabi|872|M|Filosofia islâmica
+Avicena|980|M|Filosofia islâmica
+Al-Ghazali|1058|M|Sufismo
+Maimônides|1138|M|Filosofia judaica
+Averróis|1126|M|Aristotelismo árabe
+Ibn Arabi|1165|M|Sufismo
+Rumi|1207|M|Sufismo
+Ibn Khaldun|1332|M|Sociologia histórica
+Mulla Sadra|1571|M|Escola de Isfahan
+Ibn Tufail|1105|M|Filosofia islâmica
+Suhrawardi|1154|M|Iluminacionismo
+Confúcio|-551|L|Confucionismo
+Lao Tsé|-571|L|Taoísmo
+Buda (Sidarta Gautama)|-563|L|Budismo
+Mahavira|-599|L|Jainismo
+Sun Tzu|-544|L|Estratégia chinesa
+Mozi|-470|L|Moísmo
+Mêncio|-372|L|Confucionismo
+Zhuangzi|-369|L|Taoísmo
+Xunzi|-310|L|Confucionismo
+Han Fei|-280|L|Legalismo
+Kautilya (Chanakya)|-350|L|Política indiana
+Patanjali|-200|L|Yoga
+Dong Zhongshu|-179|L|Confucionismo
+Wang Chong|27|L|Naturalismo chinês
+Nagarjuna|150|L|Madhyamaka
+Vasubandhu|350|L|Yogacara
+Bodhidharma|440|L|Zen
+Huineng|638|L|Zen
+Wonhyo|617|L|Budismo coreano
+Kukai|774|L|Shingon
+Shankara|788|L|Vedanta
+Ramanuja|1017|L|Vedanta
+Cheng Yi|1033|L|Neoconfucionismo
+Zhu Xi|1130|L|Neoconfucionismo
+Shinran|1173|L|Terra Pura
+Dogen|1200|L|Zen
+Tsongkhapa|1357|L|Budismo tibetano
+Wang Yangming|1472|L|Neoconfucionismo
+Yi Hwang|1501|L|Neoconfucionismo
+Yi I|1536|L|Neoconfucionismo
+Ogyū Sorai|1666|L|Confucionismo japonês
+Motoori Norinaga|1730|L|Kokugaku
+Fukuzawa Yukichi|1835|L|Iluminismo japonês
+Kang Youwei|1858|L|Reformismo chinês
+Rabindranath Tagore|1861|L|Humanismo indiano
+Vivekananda|1863|L|Neovedanta
+Mahatma Gandhi|1869|L|Não-violência
+Nishida Kitaro|1870|L|Escola de Quioto
+Aurobindo|1872|L|Filosofia integral
+Liang Qichao|1873|L|Reformismo chinês
+Radhakrishnan|1888|L|Neovedanta
+Watsuji Tetsuro|1889|L|Escola de Quioto
+B. R. Ambedkar|1891|L|Reformismo social
+Krishnamurti|1895|L|Filosofia livre
+Feng Youlan|1895|L|Neoconfucionismo moderno
+Mou Zongsan|1909|L|Neoconfucionismo moderno
+Thich Nhat Hanh|1926|L|Budismo engajado
+Maquiavel|1469|O|Realismo político
+Erasmo de Roterdã|1466|O|Humanismo
+Thomas More|1478|O|Humanismo
+Montaigne|1533|O|Humanismo
+Giordano Bruno|1548|O|Renascimento
+Francis Bacon|1561|O|Empirismo
+Galileu Galilei|1564|O|Revolução Científica
+Hobbes|1588|O|Contratualismo
+Descartes|1596|O|Racionalismo
+Pascal|1623|O|Jansenismo
+Espinosa|1632|O|Racionalismo
+Locke|1632|O|Empirismo
+Leibniz|1646|O|Racionalismo
+Malebranche|1638|O|Ocasionalismo
+Vico|1668|O|Filosofia da história
+Berkeley|1685|O|Empirismo
+Montesquieu|1689|O|Iluminismo
+Voltaire|1694|O|Iluminismo
+Hume|1711|O|Empirismo
+Rousseau|1712|O|Iluminismo
+Diderot|1713|O|Iluminismo
+Adam Smith|1723|O|Iluminismo escocês
+Kant|1724|O|Idealismo alemão
+Mary Wollstonecraft|1759|O|Feminismo
+Bentham|1748|O|Utilitarismo
+Edmund Burke|1729|O|Conservadorismo
+Herder|1744|O|Romantismo
+Hegel|1770|O|Idealismo alemão
+Schopenhauer|1788|O|Pessimismo
+John Stuart Mill|1806|O|Utilitarismo
+Kierkegaard|1813|O|Existencialismo
+Karl Marx|1818|O|Marxismo
+Peirce|1839|O|Pragmatismo
+William James|1842|O|Pragmatismo
+Nietzsche|1844|O|Filosofia da vida
+Frege|1848|O|Filosofia analítica
+Husserl|1859|O|Fenomenologia
+Bergson|1859|O|Vitalismo
+Dewey|1859|O|Pragmatismo
+Bertrand Russell|1872|O|Filosofia analítica
+Ortega y Gasset|1883|O|Raciovitalismo
+Wittgenstein|1889|O|Filosofia analítica
+Heidegger|1889|O|Fenomenologia
+Gramsci|1891|O|Marxismo
+Karl Popper|1902|O|Racionalismo crítico
+Adorno|1903|O|Teoria Crítica
+Sartre|1905|O|Existencialismo
+Hannah Arendt|1906|O|Filosofia política
+Levinas|1906|O|Ética do Outro
+Simone de Beauvoir|1908|O|Existencialismo
+Simone Weil|1909|O|Misticismo
+Albert Camus|1913|O|Absurdismo
+Foucault|1926|O|Pós-estruturalismo
+Habermas|1929|O|Teoria Crítica`;
+const Q={
+"Sócrates":["Só sei que nada sei.","Uma vida sem reflexão não vale a pena ser vivida."],
+"Platão":["O início de todas as ciências é o espanto."],
+"Aristóteles":["O homem é, por natureza, um animal político."],
+"Heráclito":["Ninguém se banha duas vezes no mesmo rio."],
+"Epicteto":["Não são as coisas que perturbam os homens, mas os juízos que fazem delas."],
+"Marco Aurélio":["Tens poder sobre a tua mente, não sobre os acontecimentos. Compreende isso e encontrarás a força."],
+"Sêneca":["Não é que tenhamos pouco tempo, mas que perdemos muito."],
+"Epicuro":["Nada é suficiente para quem o suficiente é pouco."],
+"Agostinho de Hipona":["O que é o tempo? Se ninguém me pergunta, sei; se quero explicar, já não sei."],
+"Rumi":["A ferida é o lugar por onde a luz entra em você."],
+"Confúcio":["Aprender sem pensar é inútil; pensar sem aprender é perigoso."],
+"Lao Tsé":["A jornada de mil milhas começa com um único passo."],
+"Buda (Sidarta Gautama)":["O ódio nunca cessa pelo ódio; só cessa pelo amor."],
+"Zhuangzi":["Sonhei que era uma borboleta; agora não sei se sou um homem que sonhou ser borboleta, ou uma borboleta sonhando ser homem."],
+"Sun Tzu":["A suprema arte da guerra é vencer sem lutar."],
+"Mahatma Gandhi":["A não-violência é a maior força à disposição da humanidade."],
+"Montaigne":["Que sei eu?"],
+"Maquiavel":["É mais seguro ser temido do que amado, quando não se pode ser ambos."],
+"Francis Bacon":["Conhecimento é poder."],
+"Descartes":["Penso, logo existo."],
+"Pascal":["O coração tem razões que a própria razão desconhece."],
+"Espinosa":["Não rir, não lamentar, não detestar, mas compreender."],
+"Hume":["A razão é, e deve ser apenas, escrava das paixões."],
+"Rousseau":["O homem nasce livre, e por toda parte encontra-se a ferros."],
+"Kant":["Ousa saber! Tem a coragem de te servires do teu próprio entendimento."],
+"Hegel":["A coruja de Minerva só levanta voo ao anoitecer."],
+"Schopenhauer":["O mundo é a minha representação."],
+"Kierkegaard":["A vida só pode ser compreendida olhando-se para trás, mas deve ser vivida olhando-se para a frente."],
+"Karl Marx":["Os filósofos apenas interpretaram o mundo de diversas maneiras; o que importa é transformá-lo."],
+"Nietzsche":["Quem tem um porquê para viver suporta quase qualquer como."],
+"Wittgenstein":["Os limites da minha linguagem significam os limites do meu mundo."],
+"Sartre":["O homem está condenado a ser livre."],
+"Simone de Beauvoir":["Não se nasce mulher: torna-se mulher."],
+"Albert Camus":["É preciso imaginar Sísifo feliz."],
+"Foucault":["Onde há poder, há resistência."]};
+const X={
+"Marco Aurélio":["A felicidade da tua vida depende da qualidade dos teus pensamentos.","O obstáculo ao caminho torna-se o caminho.","A melhor vingança é não ser como aquele que te causou o dano.","Quão pouco é preciso para viver uma vida feliz.","A alma toma a cor dos seus pensamentos.","Não percas tempo discutindo como deve ser um bom homem. Sê um.","Elimina a queixa “fui prejudicado” e o prejuízo desaparece.","Vive cada dia como se fosse o último.","O que não é útil ao enxame não é útil à abelha.","Ama o ofício que aprendeste e contenta-te com ele.","Ama as pessoas com quem o destino te une, mas fá-lo de todo o coração.","Se algo externo te perturba, não é ele que te incomoda, mas o teu juízo sobre ele."],
+"Sêneca":["Enquanto adiamos, a vida passa.","Sofremos mais na imaginação do que na realidade.","Enquanto ensinamos, aprendemos.","Não há vento favorável para quem não sabe para que porto navega.","Nada nos pertence senão o tempo.","A raiva é uma breve loucura.","Não é pobre quem tem pouco, mas quem deseja mais.","A pobreza alegre é uma coisa honrada.","O homem é coisa sagrada para o homem.","A vida, se souberes usá-la, é longa."],
+"Confúcio":["Não faças aos outros o que não queres que te façam.","O homem superior é exigente consigo mesmo; o inferior exige dos outros.","Quando vires um homem bom, procura igualá-lo; quando vires um mau, examina-te a ti mesmo.","Saber que se sabe o que se sabe e que não se sabe o que não se sabe: eis o verdadeiro saber.","Entre três pessoas que caminham juntas, sempre haverá um mestre para mim.","Errar e não se corrigir, isso sim é errar.","Não te aflijas por não seres reconhecido; preocupa-te em ser digno de reconhecimento.","A virtude não vive só: sempre terá vizinhos.","Quem governa pela virtude é como a estrela polar, que permanece no lugar enquanto as outras giram ao seu redor.","Estudar e praticar o que se aprendeu: não é isso uma alegria?","O homem superior harmoniza-se sem ser igual; o inferior iguala-se sem se harmonizar."],
+"Nietzsche":["O que não me mata me fortalece.","Sem música, a vida seria um erro.","É preciso ter ainda caos dentro de si para dar à luz uma estrela dançante.","Torna-te o que tu és.","Quem luta com monstros deve cuidar para não se tornar também um monstro.","Não há fatos, apenas interpretações.","Nas convicções há mais inimigos da verdade do que nas mentiras.","O homem é uma corda estendida entre o animal e o super-homem.","Que o meu amor daqui em diante seja o amor ao destino.","A loucura é rara nos indivíduos, mas nos grupos e nas épocas é a regra.","Temos a arte para não morrer da verdade.","Eu só poderia acreditar num deus que soubesse dançar.","Deus está morto! E fomos nós que o matamos."]};
+Object.assign(X,{
+"Sócrates":["Conhece-te a ti mesmo.","Ninguém erra voluntariamente.","É melhor sofrer uma injustiça do que cometê-la.","Prefiro morrer defendendo-me à minha maneira a viver à maneira deles.","Um homem bom não pode ser prejudicado, nem na vida nem na morte.","O que importa não é viver, mas viver bem.","A riqueza não traz a virtude; é da virtude que vem a riqueza e todos os outros bens.","Ninguém sabe se a morte não é o maior de todos os bens.","Chegou a hora de partirmos: eu para a morte, vós para a vida. Qual dos caminhos é melhor, só o deus sabe.","Não se deve pagar o mal com o mal."],
+"Platão":["O maior castigo dos bons que se recusam a governar é serem governados pelos piores.","Pensar é o diálogo da alma consigo mesma.","O começo é a parte mais importante de qualquer trabalho.","A nossa necessidade será a criadora da cidade.","Ninguém é voluntariamente mau.","A justiça é cada um fazer aquilo que lhe cabe.","O tempo é a imagem móvel da eternidade.","Filosofar é aprender a morrer."],
+"Buda (Sidarta Gautama)":["Todas as coisas têm a mente como precursora e como guia: são feitas pela mente.","Ninguém nos salva senão nós mesmos. Nós mesmos devemos trilhar o caminho.","Vencer a si mesmo é maior do que vencer mil homens em batalha.","Sede ilhas para vós mesmos.","Todas as coisas condicionadas são impermanentes.","Gota a gota, a vasilha d’água se enche; assim o sábio se enche de bem.","Não te lamentes pelo passado nem te percas no futuro: o passado já se foi e o futuro não chegou.","Como a mãe protege com a vida o seu filho único, cultiva um coração sem limites por todos os seres.","Vós mesmos deveis fazer o esforço; os Budas apenas indicam o caminho."],
+"Lao Tsé":["O Tao que pode ser dito não é o Tao eterno.","Quem conhece os outros é sábio; quem conhece a si mesmo é iluminado.","O mais suave do mundo vence o mais duro.","Quem sabe contentar-se é rico.","O sábio não acumula: quanto mais dá aos outros, mais tem.","Governar um grande país é como cozinhar um pequeno peixe.","O sábio age sem agir e ensina sem palavras.","Quem sabe não fala; quem fala não sabe.","Nada é mais suave e fraco que a água, mas nada a supera ao atacar o duro.","Quem se põe na ponta dos pés não se sustenta.","Quem vence os outros tem força; quem vence a si mesmo é poderoso."]});
+Object.assign(X,{
+"Descartes":["O bom senso é a coisa do mundo mais bem distribuída.","Não basta ter o espírito bom; o principal é aplicá-lo bem.","Para examinar a verdade, é preciso, uma vez na vida, pôr todas as coisas em dúvida, tanto quanto possível.","Dividir cada dificuldade em tantas parcelas quantas forem possíveis e necessárias para melhor resolvê-las.","Procurar sempre vencer antes a mim mesmo do que à fortuna, e mudar antes os meus desejos do que a ordem do mundo.","A leitura de todos os bons livros é como uma conversa com as melhores pessoas dos séculos passados.","Nunca aceitar como verdadeira coisa alguma que eu não conhecesse evidentemente como tal.","Nada está inteiramente em nosso poder, exceto os nossos pensamentos."],
+"Kant":["Pensamentos sem conteúdo são vazios; intuições sem conceitos são cegas.","Age apenas segundo uma máxima tal que possas querer ao mesmo tempo que ela se torne lei universal.","Age de tal maneira que uses a humanidade, tanto na tua pessoa como na de qualquer outro, sempre como fim e nunca simplesmente como meio.","De uma madeira tão retorcida como aquela de que o homem é feito, nada inteiramente reto pode ser construído.","Duas coisas enchem o ânimo de admiração e veneração sempre novas e crescentes: o céu estrelado acima de mim e a lei moral em mim.","Tive de suprimir o saber para dar lugar à fé.","O ser humano só se torna humano pela educação.","Todo o nosso conhecimento começa com os sentidos, passa ao entendimento e termina na razão."],
+"Espinosa":["Os homens se enganam ao se julgarem livres: tal opinião consiste apenas em terem consciência de suas ações e ignorarem as causas que as determinam.","A felicidade não é o prêmio da virtude, mas a própria virtude.","Cada coisa esforça-se, tanto quanto pode, por perseverar em seu ser.","Uma emoção só pode ser refreada ou suprimida por outra emoção contrária e mais forte.","O homem livre em nada pensa menos do que na morte; sua sabedoria é uma meditação da vida.","O ódio é aumentado pelo ódio recíproco e pode ser destruído pelo amor.","A paz não é a ausência de guerra: é uma virtude que nasce da força da alma.","Deus, ou seja, a Natureza."],
+"Sartre":["A existência precede a essência.","O inferno são os outros.","O homem nada mais é do que aquilo que ele faz de si mesmo.","Ao escolher por si mesmo, o homem escolhe por todos os homens.","O existencialismo é um humanismo.","O homem é uma paixão inútil.","Não há realidade senão na ação."],
+"Simone de Beauvoir":["A representação do mundo, como o próprio mundo, é obra dos homens.","É pelo trabalho que a mulher vem diminuindo a distância que a separava do homem.","A velhice é um segredo vergonhoso de que é indecente falar.","O opressor não seria tão forte se não tivesse cúmplices entre os próprios oprimidos.","Quando um indivíduo é mantido em situação de inferioridade, o fato é que ele é inferior."]});
+Object.assign(X,{
+"Hume":["A beleza das coisas existe no espírito de quem as contempla.","O costume é o grande guia da vida humana.","Um homem sábio proporciona a sua crença à evidência.","Nenhum testemunho basta para estabelecer um milagre, a menos que a sua falsidade fosse ainda mais milagrosa do que o fato que ele pretende estabelecer.","A moral é mais propriamente sentida do que julgada.","Nunca consigo apreender meu eu sem alguma percepção, e nunca observo nada além da percepção.","A ciência do homem é o único fundamento sólido das outras ciências."],
+"Pascal":["O homem é apenas um caniço, o mais fraco da natureza, mas é um caniço pensante.","Toda a infelicidade dos homens vem de uma só coisa: não saberem permanecer em repouso num quarto.","O silêncio eterno desses espaços infinitos me apavora.","Quanto mais espírito se tem, mais se encontram homens originais.","Escrevo-lhe uma carta longa porque não tive tempo de fazê-la mais curta.","A última coisa que se descobre ao escrever uma obra é saber qual colocar em primeiro lugar.","Se o nariz de Cleópatra tivesse sido mais curto, toda a face da terra teria mudado."],
+"Aristóteles":["A virtude moral resulta do hábito.","A felicidade é uma atividade da alma em conformidade com a virtude.","A virtude é um meio-termo entre dois vícios, um por excesso e outro por falta.","Todos os homens, por natureza, desejam conhecer.","Uma andorinha não faz verão, nem um só dia.","O amigo é um outro eu.","É próprio do homem culto buscar a precisão em cada assunto na medida em que a natureza do tema o permite.","A natureza nada faz em vão."],
+"Maquiavel":["Todos veem o que pareces, poucos sentem o que és.","Os homens esquecem mais depressa a morte do pai do que a perda do patrimônio.","Não há nada mais difícil de conduzir, mais duvidoso de ter êxito e mais perigoso de manejar do que introduzir uma nova ordem de coisas.","Onde há grande vontade, não podem existir grandes dificuldades.","A fortuna é árbitra de metade das nossas ações, mas ainda nos deixa governar a outra metade.","É preciso ser raposa para conhecer as armadilhas e leão para aterrorizar os lobos.","Os homens devem ser bem tratados ou eliminados, pois vingam-se das ofensas leves, mas das graves não podem."],
+"Montaigne":["Os homens são atormentados pelas opiniões que têm das coisas, e não pelas coisas em si.","A coisa mais importante do mundo é saber pertencer a si mesmo.","Eu me estudo mais do que qualquer outro assunto: essa é a minha metafísica, essa é a minha física.","Cada homem carrega em si a forma inteira da condição humana.","Se me pressionam a dizer por que o amava, sinto que só posso exprimi-lo respondendo: porque era ele, porque era eu.","No mais alto trono do mundo, ainda estamos sentados sobre o nosso próprio traseiro.","O sinal mais certo da sabedoria é uma alegria constante."]});
+Object.assign(X,{
+"Locke":["Nenhum conhecimento humano pode ir além da nossa experiência.","Onde não há lei, não há liberdade.","Suponhamos que a mente seja, como se diz, um papel em branco, desprovido de todos os caracteres.","Ninguém deve prejudicar outro na sua vida, saúde, liberdade ou posses.","A leitura apenas fornece à mente os materiais do conhecimento; é o pensamento que faz nosso o que lemos.","Onde termina a lei, começa a tirania.","O grande e principal fim dos homens ao se unirem em sociedade e se submeterem a um governo é a preservação da sua propriedade."],
+"Hobbes":["A vida do homem é solitária, pobre, sórdida, brutal e curta.","O homem é o lobo do homem.","Os pactos, sem a espada, não passam de palavras.","O medo e eu nascemos gêmeos.","A felicidade é um contínuo progresso do desejo, de um objeto a outro.","A liberdade consiste na ausência de impedimentos externos ao movimento."],
+"Leibniz":["Este é o melhor dos mundos possíveis.","Nada acontece sem que haja uma razão suficiente.","Por que existe algo e não antes nada?","A música é um exercício oculto de aritmética, no qual a alma não sabe que está contando.","Não existem na natureza dois seres perfeitamente idênticos.","O presente está grávido do futuro.","A natureza não dá saltos."],
+"Voltaire":["O segredo de ser aborrecido é dizer tudo.","É preciso cultivar o nosso jardim.","Se Deus não existisse, seria necessário inventá-lo.","A dúvida não é uma condição agradável, mas a certeza é absurda.","O trabalho afasta de nós três grandes males: o tédio, o vício e a necessidade.","O melhor é inimigo do bom.","Todos os gêneros são bons, exceto o gênero aborrecido."],
+"Schopenhauer":["A vida oscila como um pêndulo entre a dor e o tédio.","O homem pode fazer o que quer, mas não pode querer o que quer.","A compaixão é o fundamento da moral.","Todo homem toma os limites do seu próprio campo de visão pelos limites do mundo.","A riqueza é como a água do mar: quanto mais se bebe, mais sede se tem.","Quem não ama a solidão não ama a liberdade.","Os talentos acertam um alvo que ninguém atinge; o gênio acerta um alvo que ninguém vê."]});
+Object.assign(X,{
+"Heráclito":["O caráter de um homem é o seu destino.","A guerra é o pai de todas as coisas.","O caminho para cima e para baixo é um só e o mesmo.","A natureza ama esconder-se.","Muito saber não ensina a ter inteligência.","Procurei a mim mesmo."],
+"Epicuro":["Não se deve temer a morte: enquanto existimos, ela não está presente; quando ela chega, nós não existimos.","De todas as coisas que a sabedoria proporciona para a felicidade da vida inteira, a maior é a aquisição da amizade.","Nem o jovem deve hesitar em filosofar, nem o velho cansar-se de filosofar.","Não é possível viver agradavelmente sem viver com prudência, beleza e justiça.","Vive escondido.","O prazer é o princípio e o fim da vida feliz."],
+"Epicteto":["Há coisas que dependem de nós e coisas que não dependem de nós.","Não procures que os acontecimentos aconteçam como queres, mas quere-os como acontecem, e viverás feliz.","É impossível que um homem aprenda aquilo que pensa já saber.","Primeiro diz a ti mesmo o que queres ser; depois faz o que tens de fazer.","Todo hábito e faculdade se confirma e fortalece nas ações correspondentes.","Quando alguém te maltrata ou fala mal de ti, lembra-te de que ele age assim por julgar que é seu dever."],
+"Agostinho de Hipona":["Tarde te amei, ó Beleza tão antiga e tão nova.","Nosso coração está inquieto até que repouse em ti.","Ama e faze o que quiseres.","Se me enganas, existo.","Dá-me a castidade e a continência, mas não agora."],
+"Rumi":["Fora das ideias de certo e errado, existe um campo. Encontro-te lá.","Não te contentes com histórias de como as coisas foram com os outros. Desvenda o teu próprio mito."],
+"Sun Tzu":["Conhece o inimigo e conhece a ti mesmo; em cem batalhas nunca estarás em perigo.","Toda guerra se baseia no engano.","Nunca se viu um país beneficiar-se de uma guerra prolongada.","Quem sabe quando lutar e quando não lutar será vitorioso.","Quem está preparado e espera o inimigo despreparado será vitorioso."],
+"Zhuangzi":["Todos conhecem a utilidade do útil, mas ninguém conhece a utilidade do inútil.","A vida tem limite, mas o conhecimento não tem limite.","As palavras existem por causa do sentido; obtido o sentido, esquecem-se as palavras.","O homem perfeito usa a mente como um espelho: nada guarda, nada recusa.","Não se pode falar do oceano ao sapo do poço, preso ao seu pequeno espaço."],
+"Mahatma Gandhi":["Minha vida é a minha mensagem.","A felicidade é quando o que você pensa, o que diz e o que faz estão em harmonia.","Os meios são como a semente e o fim é como a árvore.","A pobreza é a pior forma de violência.","O fraco nunca pode perdoar. O perdão é atributo dos fortes."],
+"Francis Bacon":["A natureza só se comanda obedecendo-lhe.","A verdade nasce mais facilmente do erro do que da confusão.","Ler torna o homem completo; conversar, ágil; escrever, exato.","Alguns livros devem ser provados, outros devorados, e poucos mastigados e digeridos.","Os homens preferem acreditar naquilo que preferem que seja verdade.","A vingança é uma espécie de justiça selvagem."],
+"Rousseau":["O mais forte nunca é forte o bastante para ser sempre o senhor, se não transforma a força em direito e a obediência em dever.","Tudo é bom ao sair das mãos do Autor das coisas; tudo degenera nas mãos do homem.","A vontade geral é sempre reta e tende sempre à utilidade pública.","O primeiro que, tendo cercado um terreno, lembrou-se de dizer 'isto é meu' e encontrou pessoas bastante simples para acreditar nele foi o verdadeiro fundador da sociedade civil.","Viver não é respirar, é agir.","Quem pretende tratar separadamente a política e a moral nunca entenderá nada de nenhuma das duas."],
+"Hegel":["Nada de grande se realizou no mundo sem paixão.","O verdadeiro é o todo.","O que é racional é real, e o que é real é racional.","A história universal é o progresso da consciência da liberdade.","A filosofia é o seu tempo apreendido em pensamentos.","O que a experiência e a história ensinam é que povos e governos nunca aprenderam nada da história."],
+"Kierkegaard":["A angústia é a vertigem da liberdade.","Há duas maneiras de ser enganado: acreditar no que não é verdade, ou recusar-se a acreditar no que é verdade.","Ousar é perder momentaneamente o equilíbrio; não ousar é perder-se a si mesmo.","A forma mais dolorosa de desespero é não querer ser si mesmo.","O oposto do pecado não é a virtude, mas a fé."],
+"Karl Marx":["A história de toda sociedade até hoje é a história da luta de classes.","Não é a consciência dos homens que determina o seu ser, mas o seu ser social que determina a sua consciência.","A religião é o ópio do povo.","Proletários de todos os países, uni-vos!","Os homens fazem a sua própria história, mas não a fazem como querem.","Cada um segundo suas capacidades, a cada um segundo suas necessidades."],
+"Wittgenstein":["Aquilo de que não se pode falar, deve-se calar.","O significado de uma palavra é o seu uso na linguagem.","A filosofia é uma luta contra o enfeitiçamento do nosso intelecto pelos meios da linguagem.","Não pense, olhe!","O mundo é tudo o que é o caso.","Se um leão pudesse falar, não poderíamos entendê-lo."],
+"Albert Camus":["No meio do inverno, aprendi finalmente que havia em mim um verão invencível.","Eu me revolto, logo existimos.","A própria luta em direção aos cumes basta para preencher um coração humano.","Nomear mal as coisas é aumentar o infortúnio do mundo.","O homem é a única criatura que se recusa a ser o que é.","A felicidade e o absurdo são dois filhos da mesma terra."],
+"Foucault":["Não me pergunte quem sou nem me peça para permanecer o mesmo.","O saber não é feito para compreender, é feito para cortar.","A prisão se parece com as fábricas, as escolas, os quartéis, os hospitais, que todos se parecem com as prisões.","O poder está em toda parte; não porque englobe tudo, mas porque vem de todos os lugares.","Talvez o objetivo hoje não seja descobrir o que somos, mas recusar o que somos.","O homem é uma invenção recente."]});
+Object.assign(X,{
+"Patanjali":["O yoga é a cessação das flutuações da mente.","Então o observador repousa em sua própria natureza.","Pela prática constante e pelo desapego, as flutuações da mente são controladas.","A prática se torna firme quando cultivada por longo tempo, sem interrupção e com devoção.","Cultivar amizade pelos felizes, compaixão pelos que sofrem, alegria pelos virtuosos e equanimidade pelos maus.","A dor que ainda não veio pode ser evitada.","Quando alguém se firma na não violência, a hostilidade cessa em sua presença.","O contentamento traz a felicidade suprema."],
+"Husserl":["Às coisas mesmas!","Toda consciência é consciência de algo.","A filosofia é a ciência das origens verdadeiras, das raízes de tudo.","Ser filósofo significa ser um eterno principiante.","O que se apresenta originariamente em intuição deve ser aceito como se dá, mas apenas nos limites em que se dá."],
+"Ortega y Gasset":["Eu sou eu e minha circunstância, e se não a salvo, não me salvo a mim.","O homem não tem natureza, tem história.","A clareza é a cortesia do filósofo.","Viver é sentir-se fatalmente forçado a exercer a liberdade.","Viver é ter de decidir a cada instante o que vamos fazer."],
+"Karl Popper":["Uma teoria que não pode ser refutada por nenhum acontecimento concebível não é científica.","Deixamos as nossas hipóteses morrerem em nosso lugar.","Eu posso estar errado, e você pode estar certo, e com um esforço podemos nos aproximar da verdade.","A tolerância ilimitada deve levar ao desaparecimento da tolerância.","Quanto mais aprendemos sobre o mundo, mais profunda é a consciência do que ignoramos."],
+"Hannah Arendt":["O direito a ter direitos.","A banalidade do mal.","O milagre que salva o mundo é, em última análise, o fato da natalidade.","O súdito ideal do regime totalitário não é o nazista convicto, mas aquele para quem a distinção entre fato e ficção já não existe.","A política tem como sentido a liberdade.","Ninguém tem o direito de obedecer."],
+"Adorno":["Não existe vida correta na vida falsa.","O todo é o falso.","Escrever um poema depois de Auschwitz é bárbaro.","A exigência de que Auschwitz não se repita é a primeira de todas para a educação.","Divertir-se significa estar de acordo.","A tarefa da arte hoje é introduzir caos na ordem."]});
+Object.assign(X,{
+"Tales de Mileto":["A água é o princípio de todas as coisas.","Todas as coisas estão cheias de deuses.","O mais difícil é conhecer-se a si mesmo; o mais fácil, dar conselhos aos outros.","O mais rápido é o pensamento, pois percorre tudo.","O mais sábio é o tempo, pois descobre tudo.","O mais forte é a necessidade, pois domina tudo."],
+"Parmênides":["É o que é; não é o que não é.","O mesmo é pensar e ser.","O ser é ingênito e imperecível, inteiro, único, imóvel e sem fim.","Não poderás conhecer o que não é, pois é inatingível, nem o exprimir.","Nada vem do nada."],
+"Diógenes de Sinope":["Procuro um homem.","Afaste-se do meu sol.","O amor ao dinheiro é a metrópole de todos os males.","A educação é, para os jovens, moderação; para os velhos, consolo; para os pobres, riqueza; para os ricos, ornamento.","Sou cidadão do mundo.","A coisa mais bela do mundo é a liberdade de expressão."],
+"Hipátia de Alexandria":["Reserve o seu direito de pensar, pois até pensar de forma errada é melhor do que não pensar.","Ensinar superstições como verdades é algo terrível."],
+"Giordano Bruno":["Existem infinitos mundos semelhantes ao nosso.","Talvez tenhais mais medo ao pronunciar esta sentença do que eu ao recebê-la.","O universo é todo centro, ou o centro está em toda parte e a circunferência em nenhuma."],
+"Galileu Galilei":["A filosofia está escrita neste grande livro, o universo, e em linguagem matemática.","Não sinto obrigação de acreditar que o mesmo Deus que nos dotou de sentidos, razão e intelecto pretendesse que renunciássemos ao seu uso.","Na ciência, a autoridade de mil não vale o raciocínio de um único indivíduo.","A intenção do Espírito Santo é nos ensinar como se vai ao céu, e não como vai o céu."],
+"Montesquieu":["Para que não se possa abusar do poder, é preciso que, pela disposição das coisas, o poder freie o poder.","A liberdade é o direito de fazer tudo o que as leis permitem.","Não há tirania pior do que aquela exercida à sombra das leis e sob a cor da justiça.","As leis inúteis enfraquecem as leis necessárias."],
+"Diderot":["O primeiro passo rumo à filosofia é a incredulidade.","Somente as paixões, e as grandes paixões, podem elevar a alma às grandes coisas.","A ignorância está menos distante da verdade do que o preconceito.","Nenhum homem recebeu da natureza o direito de comandar os outros.","Só existe uma virtude, a justiça; um dever, ser feliz; um corolário, não superestimar a vida e não temer a morte."]});
+for(const k in X)Q[k]=(Q[k]||[]).concat(X[k]);
+const P=L.split("\n").map(l=>{const[n,y,r,m]=l.split("|");return{n,y:+y,r,m}});
+const E=y=>y<500?"Antiga":y<1500?"Medieval":y<1750?"Moderna":"Contemporânea";
+const R={O:"Ocidente",L:"Oriente",M:"Oriente Médio"};
+const yr=y=>y<0?"c. "+(-y)+" a.C.":"n. "+y;
+const REM=new Set(["Al-Kindi","Al-Farabi","Avicena","Al-Ghazali","Maimônides","Averróis","Ibn Arabi","Ibn Khaldun","Mulla Sadra","Ibn Tufail","Suhrawardi","Mahavira","Kautilya (Chanakya)","Nagarjuna","Vasubandhu","Bodhidharma","Shankara","Ramanuja","Rabindranath Tagore","Vivekananda","Aurobindo","Radhakrishnan","B. R. Ambedkar","Krishnamurti","Mozi","Mêncio","Xunzi","Han Fei","Dong Zhongshu","Wang Chong","Huineng","Cheng Yi","Zhu Xi","Wang Yangming","Kang Youwei","Liang Qichao","Feng Youlan","Mou Zongsan","Mary Wollstonecraft","John Stuart Mill","Peirce","William James","Frege","Bergson","Dewey","Bertrand Russell","Heidegger","Gramsci","Levinas","Simone Weil","Habermas","Erasmo de Roterdã","Thomas More","Malebranche","Vico","Berkeley","Adam Smith","Bentham","Edmund Burke","Herder","Boécio","Anselmo de Cantuária","Abelardo","Alberto Magno","Tomás de Aquino","Roger Bacon","Boaventura","Mestre Eckhart","Duns Escoto","Guilherme de Ockham","Nicolau de Cusa","Christine de Pizan","Anaximandro","Pitágoras","Empédocles","Anaxágoras","Protágoras","Demócrito","Pirro de Élis","Zenão de Cítio","Cícero","Lucrécio","Sexto Empírico","Plotino","Wonhyo","Kukai","Shinran","Dogen","Tsongkhapa","Yi Hwang","Yi I","Ogyū Sorai","Motoori Norinaga","Fukuzawa Yukichi","Nishida Kitaro","Watsuji Tetsuro","Thich Nhat Hanh"]);
+const PV=P.filter(p=>!REM.has(p.n));
+const byE={};
+P.forEach(p=>(Q[p.n]||[]).forEach(t=>(byE[E(p.y)]??=[]).push({...p,t})));
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const SCH=[[4901,10407,14201],[5100,9602,14502],[2404,10402,14205],[300,10601,12401],[2000,11303,13203],[2301,10104,14207],[2004,10603,14103],[5304,11203,13704],[1101,9906,12404],[4906,11405,14500],[1405,11506,12407],[400,10602,12406],[401,10504,14101],[1207,11500,8503],[1802,11404,13003],[2005,10706,12603],[2011,4401,13204],[1104,10804,14803],[5109,10703,14802],[1007,11304,14303],[5302,11403,14204],[4909,10608,13600],[306,11800,13005],[1805,9603,11401],[1401,9604,11806],[5106,10605,13706],[1804,11804,12600],[1902,9601,11501],[1906,9901,14503],[801,10201,13012],[2012,9900,14105],[1206,10100,8504],[1,10404,14305],[5008,9606,11802],[6004,4400,10806],[402,11402,14702],[1004,10105,12403],[1204,11805,14301],[800,10000,14501],[802,11803,14801],[1903,10300,13603],[1809,10800,13601],[3,10302,12602],[5009,10503,8500],[5603,10102,12402],[809,11505,12300],[1400,10200,13201],[5001,9905,14302],[1202,11604,14001],[305,10406,14701],[1404,10600,12706],[803,10106,13602],[5103,11502,12702],[1208,10103,12704],[5104,9907,14705],[1901,10700,13202],[5007,10607,14000],[1100,10304,12302],[5002,11602,13004],[2010,10705,14102],[2008,11305,12601],[5600,10408,13701],[303,4402,9904],[4,10401,12405],[811,11601,13002],[6006,11600,14100],[1001,10704,12301],[4903,11407,14304],[6002,11306,12303],[5303,9903,13008],[5300,11201,8505],[2402,11807,14104],[2403,11603,14504],[2006,10400,13703],[5601,10803,13200],[6001,10301,14505],[1904,10303,8502],[807,11406,13011],[1403,10403,14003],[1002,10701,13702],[2405,10203,12703],[1800,9600,10101],[2003,10802,14004],[1200,9902,12605],[2002,10507,14804],[1000,10001,14706],[1205,11504,12304],[0,10500,14703],[1103,9607,10506],[5305,10305,14202],[2007,10604,13604],[1008,11808,14704],[5107,11400,13000],[1406,10805,12705],[5602,11202,13010],[806,11200,13009],[2300,11503,13001],[5006,11301,12305],[4908,10202,14300],[5004,11300,12306],[6000,9605,10505],[1003,10405,14206],[810,10002,14700],[1808,10702,13700],[301,11302,12400],[1006,11801,13013],[804,10801,14002],[2,10606,14806],[2400,10501,14200],[5105,10502,13705],[4911,10407,12700],[6007,10402,13006],[5605,9602,12604],[5101,10104,8501],[5,10601,14805],[4902,9906,12701],[304,10603,14800],[808,11303,13007],[404,11405,14203],[1810,4401,14205],[1905,10602,8503],[1803,11203,12401],[4904,10504,13203],[1900,11506,14502],[5000,11404,14201],[2401,11500,14103],[5010,10706,14207],[1105,9604,13704],[5301,10804,14803],[1203,11403,12406],[6005,10703,14101],[1005,11304,14500],[1102,11401,12407],[5003,9603,13003],[1806,11804,12404],[5604,11800,12603],[1201,10608,13204],[805,11806,14303],[5102,10605,13005],[1807,10100,8504],[5005,9901,13600],[4905,10201,14204],[403,11501,14802],[4900,9601,12600],[4910,10404,13012],[1801,9900,13706],[5108,4400,14503],[2009,9606,10000],[5011,10806,14105],[2001,11802,14301],[302,10105,14305],[4907,11402,12403],[1402,11805,13601],[6003,10300,8500],[2404,10800,14702],[300,10302,12602],[5100,11803,14801],[4901,9905,13603],[5304,10503,14501],[2301,10102,12300],[401,11505,12402],[1101,10106,14001],[2004,10600,13201],[4906,10200,14701],[2000,10406,14302],[400,11604,12704],[1405,11502,12706],[2005,10103,13202],[1207,9907,14705],[5109,9904,13602],[1007,10304,12702],[1802,10607,14000],[2011,11602,14102],[1104,10700,12302],[4909,4402,13004],[5302,11305,14304],[306,10705,13002],[5106,11407,12601],[1805,10408,13701],[6004,10401,14100],[1804,11601,13008],[1401,11600,12405],[5008,11306,12301],[1902,10704,14104],[801,9903,12303],[1206,11807,8505],[1906,11603,14504],[1,11201,13200],[2012,10400,13011],[1204,9600,10403],[402,11406,13703],[1004,10301,14505],[800,9902,8502],[802,10803,14003],[1809,10203,13702],[5603,10303,14004],[1202,10701,12703],[5009,10802,12605],[1903,9607,10001],[809,10101,14804],[1400,11504,14706],[3,10507,12304],[5001,10202,14202],[1404,10305,13604],[5103,10506,14703],[1208,10500,14704],[803,9605,10604],[305,11400,13000],[5007,11202,13009],[1901,11808,14206],[5104,10805,12305],[5002,10002,12306],[303,11300,13001],[2010,11200,13010],[1100,11503,12705],[2008,11301,14300],[5600,10405,13700],[1001,11302,12400],[811,10505,14002],[4,11801,13013],[2006,10702,14700],[6006,9906,8501],[6002,9602,10104],[4903,10407,14200],[5303,10606,13705],[2402,10501,13006],[5601,10601,14806],[5300,10502,12604],[2403,10801,12700],[6001,10402,14203],[807,10603,12701],[2405,4401,8503],[1002,11405,14805],[1904,11303,13007],[1403,9604,14800],[1000,11506,14205],[0,10602,14502],[1200,10504,13203],[1800,11203,14201],[2003,11404,12401],[1103,11304,14101],[2002,10703,12406],[5602,10706,14103],[1205,11500,14207],[1008,10804,14803],[5305,11403,13704],[2007,11401,14500],[2300,9603,10201],[1406,10605,14303],[806,11800,13003],[5107,4400,10100],[6000,11804,12404],[1808,10608,12603],[5006,11806,12407],[5004,9901,13005],[4908,11501,8504],[4911,10105,13204],[810,10000,14204],[301,9601,13600],[1003,10404,13012],[1006,9606,9900],[6007,10806,12600],[2400,11402,12403],[2,11802,14802],[5,11805,14105],[804,11803,13706],[5105,9905,14503],[304,10300,14305],[5605,10800,8500],[5101,10302,14301],[808,10102,13601],[4902,10106,12300],[404,10503,14801],[1810,10200,12602],[1905,11505,14501],[4904,10600,12706],[1803,11604,14702],[6005,9907,14001],[5000,10406,13603],[1900,9904,12402],[5010,10103,14701],[1105,10304,14302],[2401,11502,14000],[1203,4402,11602],[5301,10700,13201],[1201,11305,12704],[1005,10607,13202],[5604,10401,12702],[1806,11407,14705],[5003,10705,12302],[1102,10408,13602],[805,11600,14102],[5005,10704,8505],[1807,11601,14304],[403,9903,13002],[1801,11201,13004],[2001,11306,12301],[5102,11807,12601],[4900,9600,12405],[4905,10203,12303],[4910,10400,13701],[5011,11406,14100],[5108,11603,13008],[2009,9902,14104],[1402,10301,8502],[302,10403,14504],[6003,10701,13703],[300,10803,13200],[4907,9607,10303],[5100,10101,14004],[2404,10802,13011],[401,10001,14505],[4901,11504,13702],[5304,10202,14003],[1101,10506,12703],[2301,10305,12605],[2004,10604,14706],[2000,9605,10500],[400,10507,14804],[4906,11202,12304],[1405,10805,14202],[5109,10002,13604],[1007,11400,14703],[306,11808,14704],[2005,11302,13000],[1207,11301,12306],[2011,11200,12305],[1802,11300,14206],[1104,10505,13001],[5302,10405,13009],[1804,11503,13010],[6004,9906,12400],[5106,9602,14300],[1805,11801,13013],[5008,10104,13700],[4909,10407,12705],[801,10501,14700],[1401,10702,8501],[5603,10801,14002],[1206,4401,10606],[1902,10402,13705],[1906,10601,14200],[1,10502,8503],[2012,10603,13006],[402,9604,11303],[1204,11405,12604],[5009,11404,12700],[800,10504,14806],[802,11304,14203],[1004,11203,14800],[5001,10602,13007],[1809,11506,12701],[1903,11403,12401],[1202,10703,13203],[809,11500,14805],[1400,4400,14205],[5103,10201,14201],[3,11401,12406],[1404,9603,14101],[305,11800,14502],[1208,10706,13704],[5007,10804,14207],[803,10100,13003],[5104,10605,14103],[5002,10608,14803]];
+function daily(d){const o=Math.round((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-Date.UTC(2026,10,9))/864e5);if(o<0)return[];const s=SCH[o%SCH.length];return s.map(id=>{const p=P[Math.floor(id/100)];return{...p,t:Q[p.n][id%100]}})}
+function daily0(d){
+const r=rng(d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate());
+const es=Object.keys(byE).sort(()=>r()-.5).slice(0,3);
+return es.map(e=>byE[e][Math.floor(r()*byE[e].length)]);}
+const card0=x=>`<div class="c"><q>${x.t}</q><b>${x.n}</b><small>${yr(x.y)} · ${E(x.y)} · ${R[x.r]}</small><small>${x.m}</small></div>`;
+const CARDS=[];const EX=[
+["Sócrates","nada sei","Atribuída a Sócrates a partir da Apologia de Platão: ele se disse o mais sábio por reconhecer a própria ignorância, base do método de questionar para buscar a verdade."],
+["Sócrates","reflexão","Dita no julgamento que o condenou à morte, em 399 a.C.: viver sem examinar crenças e valores é viver sem consciência do que se faz."],
+["Sócrates","Conhece-te","Máxima do templo de Delfos que Sócrates adotou: o autoconhecimento é o ponto de partida de toda ética."],
+["Sócrates","injustiça","No Górgias, defende que cometer injustiça corrompe a própria alma, o que é pior do que qualquer dano sofrido."],
+["Platão","espanto","No Teeteto, Platão afirma que a filosofia nasce da admiração diante do mundo, e não de utilidade prática."],
+["Aristóteles","animal político","Na Política, diz que só na cidade o ser humano realiza sua natureza, pois linguagem e justiça exigem vida em comunidade."],
+["Heráclito","rio","Heráclito via o mundo em fluxo constante: nada permanece igual, nem o rio nem quem nele entra."],
+["Epicteto","juízos","Epicteto, ex-escravo, ensinava que o sofrimento vem da interpretação que damos aos fatos, e não dos fatos em si."],
+["Marco Aurélio","poder sobre","Nas Meditações, escritas durante campanhas militares, o imperador pratica a disciplina interior: controlar só o que depende de nós."],
+["Sêneca","pouco tempo","No tratado Sobre a brevidade da vida, critica quem desperdiça o tempo e depois reclama que a vida é curta."],
+["Epicuro","suficiente","Para Epicuro, a felicidade está em desejos simples e satisfeitos; o excesso de desejos gera insatisfação permanente."],
+["Agostinho de Hipona","tempo","Nas Confissões, Agostinho reflete sobre o tempo: ele nos é familiar, mas escapa a qualquer definição."],
+["Rumi","ferida","O poeta sufi do século XIII sugere que a dor abre espaço para a transformação espiritual."],
+["Confúcio","pensar sem","Nos Analectos, defende equilibrar estudo e reflexão: pensar sem base é arriscado, estudar sem refletir é vazio."],
+["Lao Tsé","mil milhas","Do Tao Te Ching: grandes obras nascem de ações pequenas e pacientes, em harmonia com o fluxo natural das coisas."],
+["Buda (Sidarta Gautama)","ódio","Do Dhammapada: a violência não encerra um conflito; só a compaixão rompe o ciclo do ódio."],
+["Zhuangzi","borboleta","Parábola que questiona a fronteira entre sonho e realidade e a certeza das nossas percepções."],
+["Sun Tzu","vencer sem lutar","Em A Arte da Guerra, o melhor general vence com estratégia e preparo, evitando o custo da batalha."],
+["Mahatma Gandhi","não-violência","Gandhi baseou a luta pela independência da Índia na desobediência civil pacífica, chamada satyagraha."],
+["Montaigne","Que sei eu","Lema cético de Montaigne no século XVI: humildade intelectual diante dos limites do conhecimento."],
+["Maquiavel","temido","Em O Príncipe, discute como o governante mantém a ordem num mundo instável, separando política e moral."],
+["Francis Bacon","Conhecimento","Bacon defende que a ciência experimental, e não a tradição, dá domínio sobre a natureza."],
+["Descartes","Penso","Descartes duvidou de tudo e achou uma certeza: ao duvidar, ele pensa e, portanto, existe."],
+["Pascal","coração","Pascal, matemático e religioso, afirma que a intuição e a fé alcançam o que a razão calculista não alcança."],
+["Espinosa","compreender","Espinosa propõe entender as emoções como fenômenos naturais, em vez de condená-las ou celebrá-las."],
+["Hume","escrava","Hume sustenta que a razão sozinha não move ninguém; são paixões e desejos que definem nossos fins."],
+["Rousseau","ferros","Abertura de O Contrato Social: a liberdade natural se perdeu nas desigualdades e amarras da sociedade."],
+["Kant","Ousa","Em O que é o Esclarecimento?, Kant convoca a sair da menoridade intelectual e pensar por conta própria."],
+["Hegel","coruja","A filosofia só compreende uma época quando ela já está chegando ao fim, como a coruja que voa ao entardecer."],
+["Schopenhauer","representação","O mundo que conhecemos é o modo como o sujeito o percebe, e não a coisa em si."],
+["Kierkegaard","para trás","Entendemos a vida em retrospecto, mas precisamos decidir sem certezas: eis a angústia da escolha."],
+["Karl Marx","transformá-lo","Décima primeira tese sobre Feuerbach: para Marx, a filosofia deve servir à transformação da sociedade."],
+["Nietzsche","porquê","Ter um sentido pessoal dá força para suportar o sofrimento, ideia que Nietzsche aplica à vida humana."],
+["Wittgenstein","limites","No Tractatus, Wittgenstein diz que só podemos pensar o que a linguagem consegue expressar."],
+["Sartre","condenado","Para o existencialismo não há essência prévia: somos livres e responsáveis por todas as nossas escolhas."],
+["Simone de Beauvoir","Não se nasce","Em O Segundo Sexo, ser mulher é uma construção social e histórica, e não um destino biológico."],
+["Albert Camus","Sísifo","Em O Mito de Sísifo, mesmo numa tarefa sem fim, é possível encontrar sentido e alegria na própria luta."],
+["Foucault","Onde há poder","Para Foucault, o poder não é só repressão: onde ele se exerce, surgem também formas de resistência."]];
+const EXN={
+"Marco Aurélio":[["felicidade da tua vida","Estoicismo: a qualidade da vida depende do modo como pensamos, e não das circunstâncias externas."],["obstáculo","Nas Meditações: as dificuldades podem virar oportunidade de exercer a virtude."],["vingança","Responder ao mal com o mal só o multiplica; a melhor resposta é manter o próprio caráter."],["Quão pouco","Lembrete estoico de que a felicidade exige pouco e nasce da disposição interior."],["alma toma","O caráter se forma pelos pensamentos habituais, por isso vale vigiá-los."],["Não percas tempo","Chamado à ação: a virtude se prova vivendo, não discutindo teorias."],["queixa","Sentir-se ferido depende do juízo que fazemos; mudando o juízo, a ofensa perde o poder."],["último","Exercício estoico de lembrar a finitude para valorizar o presente."],["enxame","O bem individual está ligado ao da comunidade, ideia central do cosmopolitismo estoico."],["ofício","Convite a encontrar serenidade na profissão e no dever que a vida nos deu."],["destino te une","Aceitar com afeto as pessoas e circunstâncias que nos cabem."],["algo externo","Eco de Epicteto: o que perturba é o juízo sobre a coisa, não a coisa em si."]],
+"Sêneca":[["adiamos","Nas Cartas a Lucílio, alerta contra deixar a vida para depois: o tempo só existe agora."],["imaginação","Boa parte do sofrimento vem da antecipação de males que talvez nunca venham."],["ensinamos","Ensinar é aprender: o conhecimento se consolida ao ser compartilhado."],["vento favorável","Sem objetivo claro, nenhuma circunstância ajuda; é preciso saber para onde se vai."],["pertence senão","O tempo é o único bem realmente nosso, e por isso o que mais devemos cuidar."],["breve loucura","Do tratado Sobre a Ira: a raiva leva a agir sem razão e deve ser controlada."],["Não é pobre","A pobreza se mede pelo desejo: quem quer sempre mais nunca tem o bastante."],["pobreza alegre","Defende viver com pouco e sem ansiedade, sem depender de luxos."],["sagrada","Defesa da dignidade humana e da solidariedade entre as pessoas."],["souberes","A vida é longa para quem a vive com propósito e sem desperdício."]],
+"Confúcio":[["Não faças","A chamada regra de ouro, nos Analectos: tratar o outro como gostaríamos de ser tratados."],["exigente consigo","O caráter superior se mede pela autocrítica, e não pela cobrança aos outros."],["homem bom","Aprender com o exemplo: imitar o virtuoso e examinar a si mesmo diante do erro."],["Saber que se sabe","O verdadeiro saber inclui reconhecer os limites do que se conhece."],["três pessoas","Todos podem ser mestres: de cada um aprendemos algo, seja bom ou ruim."],["Errar e não","O erro só é grave quando persistimos nele; corrigir-se faz parte da virtude."],["reconhecido","Mais vale merecer reconhecimento do que correr atrás dele."],["vizinhos","A virtude atrai e cria comunidade: quem age bem não fica isolado."],["estrela polar","O bom governante inspira pelo exemplo moral, e não pela força."],["Estudar","Abertura dos Analectos: aprender e praticar é fonte de alegria."],["harmoniza-se","Distingue harmonia, que respeita as diferenças, de conformismo, que apenas copia os outros."]],
+"Nietzsche":[["não me mata","Em Crepúsculo dos Ídolos: o sofrimento superado pode tornar a pessoa mais forte."],["música","Para Nietzsche, a arte dá sentido e alegria à existência."],["caos","Em Assim Falou Zaratustra: a criação nasce da tensão e da desordem interior."],["Torna-te","Convite a desenvolver a própria singularidade, assumindo quem se é."],["monstros","Em Para Além do Bem e do Mal: ao combater o mal, há o risco de assumir suas formas."],["fatos","Perspectivismo: não acessamos o mundo sem interpretação; todo conhecimento é perspectivo."],["convicções","Crenças rígidas podem bloquear o pensamento mais do que mentiras conscientes."],["corda","No Zaratustra, o humano é uma travessia, algo a ser superado."],["destino","Amor fati: abraçar tudo o que acontece, inclusive o sofrimento, como parte da vida."],["loucura","A irracionalidade coletiva é comum; a sanidade individual, mais rara."],["arte para","A arte nos ajuda a suportar verdades difíceis sobre a existência."],["dançar","Zaratustra valoriza leveza e alegria vital contra o peso do moralismo."],["morto","Anúncio em A Gaia Ciência: a fé em Deus perdeu o poder de sustentar valores, o que exige criar novos sentidos."]],
+"Sócrates":[["voluntariamente","Para Sócrates, o mal vem da ignorância: quem sabe o que é bom o escolhe."],["morrer defendendo","Da Apologia: prefere a morte a abandonar a integridade e a filosofia."],["bom não pode","Para ele, a verdadeira virtude protege a alma de qualquer dano externo."],["viver bem","No Críton: o que vale a pena não é a vida em si, mas a vida justa."],["riqueza","Da Apologia: os bens materiais derivam da virtude, e não o contrário."],["morte não é","Da Apologia: ninguém sabe o que é a morte, então temê-la é presumir saber o que se ignora."],["hora de partirmos","Fala final da Apologia: Sócrates aceita a condenação com serenidade."],["pagar o mal","No Críton: revidar o mal com o mal é sempre injusto."]],
+"Platão":[["castigo","Na República: quem se recusa a governar acaba governado por quem é pior."],["diálogo da alma","O pensamento é uma conversa interior, como em Teeteto e Sofista."],["começo","Na República: o início é decisivo para toda obra, inclusive a educação."],["necessidade","Na República: a cidade nasce porque ninguém basta a si mesmo."],["voluntariamente mau","Reflete o intelectualismo socrático: a injustiça nasce da ignorância do bem."],["justiça é","Definição da República: harmonia em que cada parte da cidade e da alma cumpre sua função."],["imagem móvel","No Timeu: o tempo imita a eternidade do mundo das ideias."],["aprender a morrer","No Fédon: a filosofia é treino para libertar a alma das distrações do corpo."]],
+"Buda (Sidarta Gautama)":[["precursora","Abertura do Dhammapada: a experiência é moldada pela qualidade da mente."],["salva","Ensina responsabilidade pessoal: cada um deve trilhar o caminho da libertação."],["Vencer a si","No Dhammapada: a vitória sobre os próprios impulsos vale mais que qualquer conquista externa."],["ilhas","Do Mahaparinibbana Sutta: refúgio interior, sem depender de líderes."],["impermanentes","Doutrina da impermanência (anicca): tudo o que surge desaparece."],["Gota a gota","O bem se acumula aos poucos, por pequenas ações constantes."],["passado","Convite a viver o presente, sem se prender ao passado nem ao futuro."],["mãe","Do Metta Sutta: cultivar amor-bondade ilimitado por todos os seres."],["esforço","No Dhammapada: o Buda indica o caminho, mas a prática depende de cada um."]],
+"Lao Tsé":[["Tao que pode","Abertura do Tao Te Ching: o princípio último não cabe em palavras."],["conhece os outros","O autoconhecimento vale mais do que o conhecimento sobre os outros."],["O mais suave do mundo","O flexível supera o rígido, tema recorrente do taoísmo."],["contentar-se","A riqueza verdadeira é saber se contentar."],["acumula","Dar generosamente enriquece; o apego ao acúmulo empobrece."],["pequeno peixe","Governar com delicadeza: mexer demais estraga, como ao cozinhar peixe miúdo."],["age sem agir","Wu wei: agir sem forçar, em harmonia com o curso natural."],["sabe não fala","Sabedoria silenciosa: quem entende não sente necessidade de exibir."],["água","A água, macia mas persistente, vence o duro: símbolo da força da humildade."],["ponta dos pés","Esforço artificial de parecer maior não se sustenta."],["vence os outros","A maior força é o domínio de si."]],
+"Descartes":[["bom senso","Abertura do Discurso do Método: a razão é comum a todos; o que difere é o modo de usá-la."],["aplicá-lo bem","Ter inteligência não basta: é preciso um método para usá-la corretamente."],["uma vez na vida","Nos Princípios: a dúvida metódica é o primeiro passo para chegar a certezas."],["parcelas","Segunda regra do método: dividir um problema complexo em partes menores."],["fortuna","Máxima da moral provisória: priorizar o que depende de nós e mudar desejos antes de querer mudar o mundo."],["bons livros","Ler é dialogar com os melhores pensadores do passado."],["evidentemente","Primeira regra do método: só aceitar como verdadeiro o que se apresenta de modo claro e distinto."],["nosso poder","Na moral provisória: só os pensamentos dependem inteiramente de nós."]],
+"Kant":[["vazios","Crítica da Razão Pura: conhecer exige juntar conceitos e experiência sensível."],["lei universal","Imperativo categórico: só agir por regras que valeriam para todos."],["como fim","Fórmula da humanidade: toda pessoa tem dignidade e não pode ser tratada só como instrumento."],["retorcida","Na Ideia de uma história universal: a natureza humana é imperfeita e o progresso moral é difícil."],["céu estrelado","Conclusão da Crítica da Razão Prática: espanto diante da natureza e da consciência moral."],["suprimir","No prefácio da Crítica da Razão Pura: limitar o conhecimento abre espaço à fé e à moral."],["educação","Em Sobre a Pedagogia: formação e disciplina são necessárias para realizar nossa humanidade."],["sentidos","Na Crítica da Razão Pura: esboço das três etapas do conhecimento."]],
+"Espinosa":[["se enganam","Ética: a ilusão de livre-arbítrio vem do desconhecimento das causas que nos determinam."],["prêmio","Ética V: a virtude é fonte de alegria em si mesma, e não um meio para recompensa."],["perseverar","Conatus: todo ser tende a preservar e expandir sua existência."],["refreada","Ética IV: a razão só vence a paixão quando se torna um afeto mais forte."],["homem livre","Ética IV: a sabedoria se volta para viver bem, e não para temer a morte."],["ódio","Ética III: responder ao ódio com amor pode desarmá-lo."],["ausência de guerra","Tratado Político: a paz verdadeira exige confiança e virtude, não só ausência de conflito."],["Natureza","Deus sive Natura: para Espinosa, Deus é a própria realidade, sem separação entre Criador e mundo."]],
+"Sartre":[["precede","Tese central do existencialismo: primeiro existimos e depois nos definimos por nossas escolhas."],["inferno","Da peça Entre Quatro Paredes: o olhar alheio pode nos aprisionar numa imagem."],["nada mais","Em O Existencialismo é um Humanismo: não há natureza humana prévia, somos o nosso projeto."],["escolhe por todos","Cada escolha pessoal implica um modelo de humanidade, daí a responsabilidade."],["humanismo","Título da conferência de 1945: o existencialismo como filosofia de liberdade e responsabilidade."],["paixão inútil","Em O Ser e o Nada: o ser humano busca ser Deus sem nunca conseguir, e a existência não tem justificativa prévia."],["senão na ação","Somos definidos pelo que fazemos, e não pelo que poderíamos ter sido."]],
+"Simone de Beauvoir":[["representação","Em O Segundo Sexo: a cultura foi construída sob a perspectiva masculina e apresentada como universal."],["trabalho","Para Beauvoir, a independência econômica é base da emancipação feminina."],["velhice","Em A Velhice: critica o silêncio social sobre o envelhecimento."],["opressor","Reflexão sobre como estruturas de dominação se sustentam pela adesão dos próprios oprimidos."],["inferioridade","No Segundo Sexo: a suposta inferioridade é resultado das condições impostas, e não da natureza."]]};
+for(const n in EXN)EXN[n].forEach(([k,t])=>EX.push([n,k,t]));
+const EXM={
+"Hume":[["beleza","Em Do Padrão do Gosto: a beleza não é propriedade das coisas, mas sentimento de quem as observa."],["costume","Na Investigação: acreditamos em causa e efeito por hábito, e não por razão."],["proporciona","Defesa do ceticismo moderado: a confiança numa crença deve variar conforme a evidência."],["milagre","Na Investigação: milagres exigem evidência extraordinária, maior que a regularidade da natureza."],["sentida","No Tratado: a moral nasce de sentimentos de aprovação e desaprovação, e não de pura razão."],["meu eu","Hume nega um eu fixo: o que encontramos são só percepções em fluxo."],["ciência do homem","Programa do Tratado: toda ciência depende, no fundo, de entender a natureza humana."]],
+"Pascal":[["caniço","Em Pensamentos: frágil fisicamente, o ser humano é grande pela capacidade de pensar."],["permanecer em repouso","Para Pascal, fugimos do silêncio e da reflexão por meio de distrações."],["silêncio eterno","Expressa a angústia diante da imensidão do universo revelada pela ciência moderna."],["mais espírito","Quanto mais refinada a mente, mais se percebe a originalidade de cada pessoa."],["carta longa","Nas Provinciais: escrever curto exige mais trabalho do que escrever longo."],["primeiro lugar","Em Pensamentos: a ordem do que dizer só se descobre ao final da escrita."],["Cleópatra","Exemplo de como pequenas causas contingentes podem mudar a história."]],
+"Aristóteles":[["hábito","Na Ética a Nicômaco: tornamo-nos justos agindo com justiça, e a virtude se aprende pela prática."],["atividade da alma","Para Aristóteles, felicidade (eudaimonia) é viver de acordo com a virtude."],["meio-termo","Doutrina do justo meio: a coragem, por exemplo, fica entre a covardia e a temeridade."],["desejam conhecer","Abertura da Metafísica: a curiosidade é natural ao ser humano."],["andorinha","A felicidade é resultado de uma vida inteira, e não de momentos isolados."],["outro eu","Na Ética a Nicômaco: a amizade verdadeira reflete a própria virtude."],["homem culto","Cada assunto exige um grau de precisão adequado à sua natureza."],["em vão","Princípio teleológico: tudo na natureza tem uma finalidade."]],
+"Maquiavel":[["pareces","Em O Príncipe, cap. 18: a imagem pública pesa mais que a realidade, pois poucos conhecem o verdadeiro caráter."],["morte do pai","Cap. 17: o governante deve respeitar o patrimônio alheio, pois as pessoas reagem fortemente a perdas materiais."],["nova ordem","Cap. 6: reformar é arriscado, porque os beneficiados são fracos e os prejudicados, poderosos."],["grande vontade","Cap. 26: a determinação reduz o peso das dificuldades."],["árbitra","Cap. 25: a sorte influencia metade do que fazemos, mas a outra metade depende da virtù."],["raposa","Cap. 18: governar exige astúcia e força combinadas."],["bem tratados","Cap. 3: meias medidas contra adversários geram vingança."]],
+"Montaigne":[["atormentados","Ensaios I, 14: o sofrimento vem do juízo que fazemos dos fatos, e não dos fatos em si."],["pertencer a si","Ensaios III, 13: a autonomia interior é a conquista mais valiosa."],["Eu me estudo","Montaigne faz de si mesmo objeto de investigação filosófica, inaugurando o ensaio pessoal."],["forma inteira","Ao examinar a si mesmo, ele vê toda a condição humana refletida."],["porque era ele","Em Da Amizade, sobre La Boétie: certos laços não se explicam por razões."],["traseiro","Lembrete bem-humorado: reis e súditos compartilham a mesma condição humana."],["alegria constante","Em Da educação das crianças: a sabedoria se mostra em serenidade, e não em severidade."]]};
+for(const n in EXM)EXM[n].forEach(([k,t])=>EX.push([n,k,t]));
+const EXL={
+"Locke":[["além da nossa experiência","No Ensaio sobre o Entendimento Humano: todo conhecimento deriva da experiência, base do empirismo."],["não há lei","No Segundo Tratado: a lei não restringe a liberdade, mas a protege contra o arbítrio."],["papel em branco","Tabula rasa: ao nascer não temos ideias inatas; tudo vem da experiência."],["prejudicar","Direitos naturais à vida, saúde, liberdade e propriedade, base do liberalismo político."],["materiais do conhecimento","Ler fornece a matéria-prima; só a reflexão a transforma em entendimento próprio."],["tirania","Quando a lei cessa, o poder se torna arbitrário: defesa do governo limitado."],["preservação","Para Locke, o governo existe para proteger os direitos naturais: vida, liberdade e bens."]],
+"Hobbes":[["solitária","No Leviatã: sem um Estado, a vida no estado de natureza seria miserável e insegura."],["lobo","Em De Cive: sem uma autoridade comum, cada um vê no outro uma ameaça."],["espada","No Leviatã: acordos só valem se houver poder para fazê-los cumprir."],["gêmeos","Hobbes dizia ter nascido prematuro, com o medo da Armada espanhola; o medo é central em sua teoria política."],["progresso do desejo","No Leviatã: não há repouso final do desejo; viver é desejar sempre."],["impedimentos","No Leviatã: liberdade como ausência de obstáculos, e não como autodeterminação."]],
+"Leibniz":[["melhor dos mundos","Na Teodiceia: sendo perfeito, Deus escolheu o mundo mais harmonioso. Voltaire satirizou a ideia em Cândido."],["razão suficiente","Princípio da razão suficiente: tudo tem uma explicação de por que é assim e não de outro modo."],["algo e não","Pergunta metafísica fundamental, formulada nos Princípios da Natureza e da Graça."],["aritmética","Em carta a Goldbach: a beleza musical decorre de relações numéricas percebidas sem consciência."],["idênticos","Identidade dos indiscerníveis: duas coisas sem nenhuma diferença seriam a mesma."],["grávido","Nos Novos Ensaios: o estado atual de uma coisa já contém suas consequências futuras."],["saltos","Princípio da continuidade: as mudanças na natureza ocorrem de forma gradual."]],
+"Voltaire":[["segredo","Sugere que dizer tudo cansa: deixar espaço ao leitor torna o texto interessante."],["jardim","Conclusão de Cândido: diante do mal do mundo, cuidar do que está ao nosso alcance."],["inventá-lo","Defende a utilidade social da crença em Deus, mesmo vindo de um crítico da Igreja."],["dúvida","Em carta a Frederico II: o ceticismo é desconfortável, mas mais honesto que a certeza dogmática."],["trabalho","Em Cândido: o trabalho dá sentido e protege contra a ociosidade."],["melhor é","A busca excessiva da perfeição pode impedir de fazer o que já é bom."],["gêneros","Regra literária inegociável: só não vale entediar o leitor."]],
+"Schopenhauer":[["pêndulo","Para Schopenhauer, desejar causa sofrimento e, ao satisfazer o desejo, surge o tédio."],["não pode querer","Sobre a liberdade da vontade: agimos como queremos, mas não escolhemos nossos desejos."],["compaixão","Sobre o Fundamento da Moral: a base da ética é identificar-se com o sofrimento do outro."],["campo de visão","Nos Parerga: tendemos a achar que o que não vemos não existe."],["água do mar","Nos Aforismos sobre a Sabedoria de Vida: o desejo de riqueza não tem saciedade."],["solidão","Nos Aforismos: a liberdade interior exige tempo consigo mesmo."],["alvo","Em O Mundo como Vontade e Representação: o gênio percebe o que passa despercebido aos outros."]]};
+for(const n in EXL)EXL[n].forEach(([k,t])=>EX.push([n,k,t]));
+const EXA={
+"Heráclito":[["caráter","Fragmento B119: o destino de cada um depende do seu modo de ser, e não do acaso."],["guerra","Fragmento B53: a tensão entre opostos é a força que faz o mundo existir."],["para cima","Fragmento B60: opostos aparentes são aspectos de uma mesma realidade."],["esconder-se","Fragmento B123: a verdade do mundo não se oferece à primeira vista."],["Muito saber","Fragmento B40: acumular informações não equivale a compreender."],["Procurei","Fragmento B101: para Heráclito, a filosofia começa pela investigação de si."]],
+"Epicuro":[["temer a morte","Carta a Meneceu: a morte nada é para nós, pois onde ela está, nós não estamos."],["amizade","Máximas Principais: para Epicuro, a amizade é o maior bem para uma vida feliz."],["jovem","Carta a Meneceu: a filosofia serve à saúde da alma em qualquer idade."],["prudência","Máximas Principais: o prazer epicurista depende de uma vida virtuosa."],["escondido","Lema epicurista: buscar tranquilidade longe da ambição pública."],["princípio e o fim","Carta a Meneceu: o prazer, entendido como ausência de dor e perturbação, é o fim da vida feliz."]],
+"Epicteto":[["dependem de nós","Abertura do Manual: a felicidade começa por distinguir o que podemos controlar."],["acontecimentos","Manual 8: aceitar o curso das coisas evita a frustração."],["impossível","Discursos: a presunção de saber bloqueia o aprendizado."],["Primeiro diz","Discursos III: a identidade se constrói por escolha e ação."],["hábito","Discursos II: virtudes e vícios se fortalecem pela repetição."],["maltrata","Manual 42: entender a perspectiva do outro ajuda a não se ofender."]],
+"Agostinho de Hipona":[["Tarde te amei","Confissões X: lamento de quem demorou a encontrar o que procurava."],["inquieto","Abertura das Confissões: a inquietação humana aponta para uma busca de sentido último."],["Ama e faze","Homilia sobre a 1ª Carta de João: o amor verdadeiro orienta a conduta."],["enganas","Cidade de Deus XI: antecipa o cogito de Descartes."],["castidade","Confissões VIII: confessa a dificuldade de mudar de vida."]],
+"Rumi":[["certo e errado","Verso popularizado em traduções modernas: convite a ir além dos julgamentos."],["próprio mito","Verso popularizado em traduções modernas: incentiva a busca da experiência pessoal."]],
+"Sun Tzu":[["Conhece o inimigo","Cap. 3 de A Arte da Guerra: conhecer a si e ao adversário é a base da estratégia."],["engano","Cap. 1: surpresa e dissimulação são centrais no conflito."],["prolongada","Cap. 2: guerras longas drenam recursos e enfraquecem o Estado."],["quando lutar","Cap. 3: discernimento vale mais que força."],["preparado","Cap. 3: a preparação antecede a vitória."]],
+"Zhuangzi":[["inútil","Cap. 4: o que parece inútil pode ser justamente o que preserva a vida."],["limite","Cap. 3: perseguir todo o saber esgota; é preciso viver com leveza."],["palavras existem","Cap. 26: a linguagem é um meio, e não um fim."],["espelho","Cap. 7: serenidade é refletir o mundo sem se prender a ele."],["sapo","Cap. 17: a visão limitada impede de compreender o que é maior."]],
+"Mahatma Gandhi":[["mensagem","Para Gandhi, a coerência entre vida e ideais é o maior ensinamento."],["harmonia","Ideia de integridade: coerência interior como fonte de bem-estar."],["semente","Em Hind Swaraj: os fins não justificam meios injustos, pois o resultado nasce do método."],["pobreza","Para Gandhi, a miséria é uma injustiça estrutural que fere a dignidade."],["perdoar","Perdoar exige força interior, e não fraqueza."]],
+"Francis Bacon":[["obedecendo","Novum Organum: conhecer as leis da natureza é condição para dominá-la."],["confusão","Novum Organum: um erro claro pode ser corrigido; a confusão, não."],["completo","Ensaios, Dos Estudos: cada prática intelectual forma uma qualidade."],["devorados","Ensaios, Dos Estudos: nem todo livro merece a mesma atenção."],["preferem acreditar","Novum Organum: o desejo distorce o julgamento, um dos chamados ídolos da mente."],["vingança","Ensaios, Da Vingança: fazer justiça por conta própria corrói a ordem legal."]],
+"Rousseau":[["mais forte","Contrato Social I: o poder só se sustenta quando é legitimado."],["degenera","Abertura do Emílio: a corrupção vem da sociedade, e não da natureza."],["vontade geral","Contrato Social II: o bem comum orienta a legitimidade política."],["terreno","Discurso sobre a Desigualdade: a propriedade privada marca a origem da desigualdade."],["respirar","Emílio: uma vida plena exige o uso das próprias faculdades."],["política e a moral","Emílio: não há política sem ética."]],
+"Hegel":[["paixão","Filosofia da História: as paixões são o motor das ações humanas na história."],["verdadeiro é o todo","Fenomenologia do Espírito: a verdade só se entende na totalidade, e não em partes isoladas."],["racional","Filosofia do Direito: a realidade histórica expressa a razão em desenvolvimento."],["progresso","Filosofia da História: a humanidade avança conforme amplia a liberdade."],["apreendido","Filosofia do Direito: pensar é compreender a própria época."],["nunca aprenderam","Filosofia da História: ironia sobre a repetição dos erros históricos."]],
+"Kierkegaard":[["vertigem","O Conceito de Angústia: diante de infinitas possibilidades, a liberdade provoca vertigem."],["enganado","Ensina a vigiar tanto a credulidade quanto a negação sistemática."],["Ousar","Assumir riscos faz parte de existir plenamente."],["desespero","A Doença para a Morte: o desespero nasce da recusa de ser quem se é."],["oposto do pecado","A Doença para a Morte: a questão central é a relação do indivíduo com Deus."]],
+"Karl Marx":[["luta de classes","Manifesto Comunista: o conflito entre grupos sociais é visto como motor da história."],["ser social","Prefácio de 1859: as condições materiais moldam as ideias."],["ópio","Crítica da Filosofia do Direito de Hegel: a religião alivia o sofrimento, mas o mascara."],["Proletários","Lema final do Manifesto Comunista: chamado à união internacional dos trabalhadores."],["própria história","O 18 de Brumário: a ação humana é limitada por circunstâncias herdadas."],["necessidades","Crítica do Programa de Gotha: descreve a sociedade comunista ideal."]],
+"Wittgenstein":[["calar","Última proposição do Tractatus: há limites ao que a linguagem pode dizer."],["significado","Investigações Filosóficas: sentido não é objeto mental, mas prática compartilhada."],["enfeitiçamento","Investigações: muitos problemas filosóficos nascem de confusões de linguagem."],["olhe","Investigações: observar usos concretos antes de teorizar."],["é o caso","Primeira proposição do Tractatus: o mundo é feito de fatos, e não de coisas."],["leão","Investigações: compreender exige compartilhar uma forma de vida."]],
+"Albert Camus":[["inverno","Em Retorno a Tipasa: esperança e força interior mesmo na adversidade."],["revolto","O Homem Revoltado: a revolta individual afirma valores comuns a todos."],["cumes","Conclusão de O Mito de Sísifo: o próprio esforço já dá sentido à vida."],["Nomear","Para Camus, linguagem imprecisa distorce a realidade e aumenta o sofrimento."],["única criatura","O Homem Revoltado: a revolta nasce do desejo de ser mais do que as circunstâncias permitem."],["filhos da mesma terra","Em O Mito de Sísifo: sentido e absurdo coexistem na experiência humana."]],
+"Foucault":[["permanecer o mesmo","A Arqueologia do Saber: rejeita a identidade fixa em favor da mudança."],["cortar","Em Nietzsche, a Genealogia, a História: o conhecimento é usado como instrumento de poder."],["prisão","Vigiar e Punir: instituições modernas compartilham técnicas de disciplina."],["toda parte","História da Sexualidade I: o poder é uma rede de relações, e não só o Estado."],["recusar","Em O Sujeito e o Poder: propõe resistir às formas de identidade impostas."],["invenção","As Palavras e as Coisas: o conceito moderno de homem surgiu há pouco na história."]]};
+for(const n in EXA)EXA[n].forEach(([k,t])=>EX.push([n,k,t]));
+const EXB={
+"Patanjali":[["cessação","Yoga Sutra 1.2: define o yoga como acalmar os movimentos da mente."],["observador","Yoga Sutra 1.3: com a mente quieta, a consciência reconhece sua natureza essencial."],["desapego","Yoga Sutra 1.12: a prática regular e o desapego dominam a agitação mental."],["longo tempo","Yoga Sutra 1.14: o progresso exige constância e paciência."],["amizade","Yoga Sutra 1.33: atitudes que preservam a paz diante das diferentes pessoas."],["ainda não veio","Yoga Sutra 2.16: o sofrimento futuro pode ser evitado pela compreensão e pela prática."],["hostilidade","Yoga Sutra 2.35: a não violência firmada transforma o ambiente ao redor."],["contentamento","Yoga Sutra 2.42: o contentamento (santosha) é fonte de felicidade profunda."]],
+"Husserl":[["Às coisas","Lema da fenomenologia: voltar à experiência direta dos fenômenos, sem pressupostos teóricos."],["consciência de algo","Intencionalidade: a consciência sempre se dirige a um objeto."],["origens verdadeiras","Para Husserl, a filosofia busca os fundamentos de todo conhecimento."],["principiante","Husserl defende recomeçar sempre, questionando o que se dá por certo."],["limites em que se dá","Princípio dos princípios (Ideias I): a evidência da intuição é o critério do conhecimento."]],
+"Ortega y Gasset":[["minha circunstância","Meditações do Quixote: somos inseparáveis do mundo e do contexto em que vivemos."],["tem história","História como Sistema: o ser humano se define pelo que viveu, e não por uma essência fixa."],["cortesia","Defesa de pensar e escrever com clareza, por respeito ao leitor."],["fatalmente","Para Ortega, a liberdade não é uma opção, mas condição inevitável da vida humana."],["ter de decidir","Viver é escolher continuamente; não escolher também é uma escolha."]],
+"Karl Popper":[["refutada","Critério de falseabilidade: a ciência se distingue por poder ser testada e refutada."],["morrerem","Teorias erradas são eliminadas em vez de nós: é o método do erro e da correção."],["estar errado","A Sociedade Aberta: o diálogo crítico aproxima da verdade, sem certeza dogmática."],["tolerância","Paradoxo da tolerância: a sociedade aberta precisa se defender dos intolerantes."],["ignoramos","Quanto mais se sabe, mais claras ficam as lacunas do conhecimento."]],
+"Hannah Arendt":[["ter direitos","Origens do Totalitarismo: apátridas perdem tudo quando não pertencem a uma comunidade política."],["banalidade","Eichmann em Jerusalém: grandes males podem ser cometidos por pessoas comuns que deixam de pensar."],["natalidade","A Condição Humana: cada nascimento traz a possibilidade de um novo começo."],["fato e ficção","Origens do Totalitarismo: o regime totalitário corrói a distinção entre verdade e mentira."],["sentido a liberdade","O que é Política?: a política existe para garantir o espaço da liberdade."],["direito de obedecer","Eichmann em Jerusalém: a responsabilidade individual não desaparece sob ordens."]],
+"Adorno":[["vida correta","Minima Moralia: numa sociedade injusta, não é possível viver de forma plenamente correta."],["todo é o falso","Minima Moralia: inverte Hegel, para quem o todo é o verdadeiro; a totalidade social é problemática."],["poema","Crítica da cultura: a arte precisa encarar a barbárie, sem normalizá-la."],["Auschwitz não se repita","Educação após Auschwitz: a primeira tarefa educativa é impedir a barbárie."],["Divertir-se","Dialética do Esclarecimento: a indústria cultural molda o lazer para gerar conformismo."],["caos na ordem","Minima Moralia: a arte deve perturbar a ordem estabelecida."]]};
+for(const n in EXB)EXB[n].forEach(([k,t])=>EX.push([n,k,t]));
+const EXC={
+"Tales de Mileto":[["água é o princípio","Segundo Aristóteles, Tales foi o primeiro a buscar uma explicação natural para a origem de tudo."],["cheias de deuses","Aristóteles, De Anima: sugere que o divino está presente em toda a natureza."],["mais difícil","Atribuída por Diógenes Laércio: é mais fácil aconselhar do que se conhecer."],["mais rápido","Atribuída a Tales por Diógenes Laércio: o pensamento percorre tudo."],["mais sábio","Diógenes Laércio: o tempo revela a verdade sobre todas as coisas."],["mais forte","Diógenes Laércio: nada escapa à necessidade."]],
+"Parmênides":[["É o que é","Princípio de Parmênides: só se pode pensar e dizer o que existe."],["pensar e ser","Fragmento 3: pensar e ser são inseparáveis, base da ontologia ocidental."],["ingênito","Fragmento 8: o ser verdadeiro não nasce, não morre e não muda."],["inatingível","Fragmento 2: o não-ser não pode ser conhecido nem dito."],["Nada vem do nada","Princípio ligado aos eleatas: nada surge a partir do puro nada."]],
+"Diógenes de Sinope":[["Procuro","Diógenes andava com uma lamparina em pleno dia, criticando a falta de virtude."],["meu sol","Resposta a Alexandre, o Grande: o filósofo valoriza a liberdade acima do poder."],["dinheiro","Crítica cínica à ganância como origem de muitos vícios."],["moderação","Diógenes Laércio: a educação serve a cada fase da vida."],["cidadão do mundo","Origem do cosmopolitismo: pertencemos à humanidade, e não só a uma cidade."],["liberdade de expressão","Para os cínicos, falar com franqueza (parrésia) era sinal de liberdade."]],
+"Hipátia de Alexandria":[["direito de pensar","Atribuição popular de origem incerta: Hipátia não deixou textos preservados, e a frase aparece só em fontes modernas."],["superstições","Atribuição popular de origem incerta: Hipátia não deixou textos preservados, e a frase aparece só em fontes modernas."]],
+"Giordano Bruno":[["infinitos mundos","Bruno defendeu um universo infinito com outros mundos, antecipando a astronomia moderna."],["sentença","Dita aos inquisidores que o condenaram à fogueira, em 1600."],["todo centro","Em Do Infinito, Universo e Mundos: não há centro privilegiado no cosmos."]],
+"Galileu Galilei":[["linguagem matemática","O Ensaiador: Galileu defende que a natureza se explica por números e geometria."],["sentidos, razão","Carta à Grã-Duquesa Cristina: defende o uso da razão e da observação, mesmo diante da fé."],["autoridade de mil","Frase atribuída a Galileu: a evidência vale mais do que o argumento de autoridade."],["como vai o céu","Citada por Galileu: a Bíblia trata da salvação, e não de astronomia."]],
+"Montesquieu":[["freie o poder","O Espírito das Leis: base da separação dos poderes, em que um poder limita o outro."],["permitem","O Espírito das Leis: a liberdade política depende de leis justas."],["tirania pior","Atribuída a Montesquieu: denuncia o abuso do poder sob aparência de legalidade."],["inúteis","O Espírito das Leis: o excesso de normas desvaloriza as realmente necessárias."]],
+"Diderot":[["incredulidade","Pensamentos Filosóficos: filosofar começa por duvidar do que se aceita sem exame."],["paixões","Pensamentos Filosóficos: as paixões fortes impulsionam grandes realizações."],["preconceito","Interpretação da Natureza: o preconceito afasta da verdade mais do que a simples ignorância."],["comandar","Enciclopédia, verbete Autoridade Política: o poder legítimo depende do consentimento."],["uma virtude","Síntese de uma ética iluminista centrada na justiça e na felicidade."]]};
+for(const n in EXC)EXC[n].forEach(([k,t])=>EX.push([n,k,t]));
+function ex(x){const e=EX.find(e=>e[0]==x.n&&x.t.includes(e[1]));return e?e[2]:x.n+" ("+yr(x.y)+") pertence à corrente "+x.m+". A explicação desta frase ainda será adicionada."}
+const card=x=>{const i=CARDS.push(x)-1;return card0(x).replace('<div class="c">','<div class="c" onclick="fp(this,'+i+')">')};
+function fp(el,i){const x=CARDS[i],b=el.dataset.b=="1";el._f??=el.innerHTML;el.style.transform="rotateY(90deg)";setTimeout(()=>{el.innerHTML=b?el._f:"<p>"+ex(x)+"</p><b>"+x.n+"</b><small>Contexto</small>";el.dataset.b=b?"0":"1";el.style.transform="rotateY(0)"},250)}
+const fmt=d=>d.toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+const v=document.getElementById("v");
+let today=new Date();today.setHours(0,0,0,0);
+const START=new Date(2026,10,9);let cm=new Date(today.getFullYear(),today.getMonth(),1),sel=null;
+let cur=0,open=false;sel=new Date(today);
+const END=new Date(2026,10,9+SCH.length-1);
+const ok=d=>d>=START&&d<=new Date(Math.max(END,today));
+const sh=(d,k)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+k);
+function tab(i){cur=i;[0,1].forEach(k=>document.getElementById("t"+k).className=k==i?"on":"");i?fil():dia()}
+function dia(){CARDS.length=0;const isT=+sel==+today;
+let h='<div class="m"><button onclick="st(-1)" '+(ok(sh(sel,-1))?"":"disabled")+'>‹</button><button class="dt" onclick="tg()">'+(isT?"Hoje · ":"")+fmt(sel)+' ▾</button><button onclick="st(1)" '+(ok(sh(sel,1))?"":"disabled")+'>›</button></div>';
+if(open)h+=grid();
+if(!isT)h+='<p style="margin:0"><button class="bk" onclick="go(today)">Voltar para hoje</button></p>';
+h+=daily(sel).map(card).join("");
+v.innerHTML=h;}
+function grid(){const y=cm.getFullYear(),m=cm.getMonth(),first=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate();
+let h='<div class="m" style="margin-top:6px"><button onclick="mv(-1)">‹</button><b>'+cm.toLocaleDateString("pt-BR",{month:"long",year:"numeric"})+'</b><button onclick="mv(1)">›</button></div><div class="g" style="margin-bottom:16px">';
+"DSTQQSS".split("").forEach(c=>h+="<span>"+c+"</span>");
+for(let i=0;i<first;i++)h+="<span></span>";
+for(let d=1;d<=n;d++){const dt=new Date(y,m,d);h+='<button '+(ok(dt)?"":"disabled")+' class="'+(+sel==+dt?"s":"")+'" onclick="pk('+y+','+m+','+d+')">'+d+'</button>'}
+return h+"</div>";}
+function tg(){open=!open;if(open)cm=new Date(sel.getFullYear(),sel.getMonth(),1);dia()}
+function mv(k){const n=new Date(cm.getFullYear(),cm.getMonth()+k,1);if(n<new Date(START.getFullYear(),START.getMonth(),1)||n>new Date(Math.max(END,today)))return;cm=n;dia()}
+function pk(y,m,d){sel=new Date(y,m,d);open=false;dia()}
+function st(k){const n=sh(sel,k);if(ok(n)){sel=n;dia()}}
+function go(d){sel=new Date(d);open=false;dia()}
+function fil(q=""){
+v.innerHTML=`<h1>${PV.length} filósofos</h1><input id="q" placeholder="Buscar nome, movimento ou era" oninput="fl(this.value)"><div id="l"></div>`;fl(q);}
+function fl(q){q=q.toLowerCase();
+document.getElementById("l").innerHTML=PV.filter(p=>(p.n+p.m+E(p.y)+R[p.r]).toLowerCase().includes(q)).sort((a,b)=>a.y-b.y).map(p=>`<div class="p"><b>${p.n}</b><small>${yr(p.y)} · ${E(p.y)} · ${R[p.r]} · ${p.m}</small></div>`).join("");}
+[0,1].forEach(i=>document.getElementById("t"+i).onclick=()=>tab(i));
+function rf(){const t=new Date();t.setHours(0,0,0,0);if(+t!=+today){const w=+sel==+today;today=t;if(w)sel=new Date(t);cm=new Date(sel.getFullYear(),sel.getMonth(),1);tab(cur)}}
+document.addEventListener("visibilitychange",rf);window.addEventListener("focus",rf);setInterval(rf,60000);
+tab(0);
+</script><script>if("serviceWorker" in navigator&&location.protocol.indexOf("http")==0)navigator.serviceWorker.register("sw.js").catch(function(){});</script></body></html>

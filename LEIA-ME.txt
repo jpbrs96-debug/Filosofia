@@ -1,0 +1,9 @@
+FILOSOFIA DO DIA - como colocar no iPhone ou iPad
+
+1. Coloque esta pasta inteira em um site estático gratuito (GitHub Pages, Netlify ou Cloudflare Pages).
+   Os cinco arquivos precisam ficar juntos: index.html, manifest.webmanifest, sw.js e os ícones.
+2. No iPhone ou iPad, abra o endereço no Safari.
+3. Toque em Compartilhar e depois em "Adicionar à Tela de Início".
+4. Abra pelo ícone. Depois do primeiro acesso, o app funciona sem internet.
+
+As frases do dia vêm da data do aparelho. O primeiro dia é 09/11/2026 e o calendário cobre 365 dias.
